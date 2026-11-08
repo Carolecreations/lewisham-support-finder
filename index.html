@@ -4,346 +4,387 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lewisham Support Finder</title>
+<meta name="description" content="Find free help in the London Borough of Lewisham: money, housing, food, Council Tax, children, health, carers and more. Unofficial guide with links to official sources.">
 <meta name="theme-color" content="#0b1f3a">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Lewisham Help">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f4f6f9;--card:#ffffff;--tx:#0f172a;--mu:#475569;--ac:#0b1f3a;--ac-light:#e8eef5;--bd:#cbd5e1;--ok:#15803d;--okb:#dcfce7;--wa:#b45309;--wab:#fef3c7;--red:#b91c1c;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0f1a;--card:#111827;--tx:#f8fafc;--mu:#94a3b8;--ac:#3b82f6;--ac-light:#1e293b;--bd:#334155;--ok:#4ade80;--okb:#064e3b;--wa:#fcd34d;--wab:#451a03;--red:#f87171}}
+:root{--bg:#f4f6f9;--card:#ffffff;--tx:#0f172a;--mu:#475569;--ac:#0b1f3a;--on-ac:#ffffff;--ac-light:#e8eef5;--bd:#cbd5e1;--ok:#166534;--okb:#dcfce7;--wa:#92400e;--wab:#fef3c7;--info:#1e40af;--infob:#dbeafe;--red:#b91c1c;--focus:#2563eb}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0f1a;--card:#111827;--tx:#f8fafc;--mu:#a3b1c6;--ac:#8ab8ff;--on-ac:#0a0f1a;--ac-light:#1e293b;--bd:#334155;--ok:#86efac;--okb:#052e1b;--wa:#fcd34d;--wab:#3b1d04;--info:#bfdbfe;--infob:#172554;--red:#fca5a5;--focus:#93c5fd}}
+:root[data-theme="dark"]{--bg:#0a0f1a;--card:#111827;--tx:#f8fafc;--mu:#a3b1c6;--ac:#8ab8ff;--on-ac:#0a0f1a;--ac-light:#1e293b;--bd:#334155;--ok:#86efac;--okb:#052e1b;--wa:#fcd34d;--wab:#3b1d04;--info:#bfdbfe;--infob:#172554;--red:#fca5a5;--focus:#93c5fd}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased;border-top:6px solid var(--red)}
-main{max-width:640px;margin:0 auto;padding:32px 16px 64px}
-h1{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:2.1rem;line-height:1.2;margin:0 0 8px;letter-spacing:-0.02em;color:var(--ac)}
-.sub{color:var(--mu);margin:0 0 28px;font-size:1.05rem;font-weight:500}
-fieldset{border:none;padding:0;margin:0 0 24px}
-legend{font-weight:700;font-size:1.1rem;padding:0;margin-bottom:16px;color:var(--ac)}
-.grid-opts{display:flex;flex-wrap:wrap;gap:10px}
-label.opt{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--card);border:2px solid var(--bd);border-radius:99px;cursor:pointer;font-size:0.95rem;font-weight:600;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.05);user-select:none;color:var(--tx)}
-label.opt:hover{border-color:var(--ac);color:var(--ac);background:var(--ac-light)}
-label.opt input{display:none}
-label.opt:has(input:checked){background:var(--ac);border-color:var(--ac);color:#fff;box-shadow:0 4px 12px rgba(11,31,58,0.3)}
-label.opt:has(input:checked)::before{content:"✓";font-weight:700;margin-right:2px}
-.card{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;padding:20px;margin:0 0 16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:transform 0.2s}
-.card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-.card h3{margin:0 0 6px;font-size:1.15rem;line-height:1.3;font-weight:700;color:var(--ac)}
-.org{font-size:0.8rem;font-weight:700;color:var(--mu);margin:0 0 12px;text-transform:uppercase;letter-spacing:0.08em}
-.card p{margin:8px 0;font-size:0.95rem}
-.badge{display:inline-block;font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:6px;margin-bottom:12px;letter-spacing:0.05em;text-transform:uppercase}
-.ok{background:var(--okb);color:var(--ok)}.chk{background:var(--wab);color:var(--wa)}
-a{color:var(--ac);text-decoration:none;font-weight:600;border-bottom:1px solid transparent;transition:border-color 0.2s}
-a:hover{border-bottom-color:var(--ac)}
-.cnt{font-weight:700;font-size:1.1rem;margin:32px 0 16px;padding-bottom:12px;border-bottom:2px solid var(--bd);color:var(--ac)}
-footer{font-size:0.8rem;color:var(--mu);border-top:2px solid var(--bd);margin-top:48px;padding-top:24px;line-height:1.6}
-.urg{border:2px solid var(--red);background:var(--card);border-radius:12px;padding:20px;margin:0 0 28px;box-shadow:0 4px 12px rgba(185,28,28,0.08)}
-.urg h2{font-size:1.1rem;margin:0 0 12px;color:var(--red);display:flex;align-items:center;gap:8px;font-family:Georgia,serif}
-.urg ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.urg li{display:flex;gap:12px;align-items:baseline}
-.urg a{font-weight:800;font-size:1rem;min-width:110px;text-decoration:none;color:var(--red);border-bottom:none}
-.urg a:hover{border-bottom:none;opacity:0.8}
-.urg span{color:var(--tx);font-size:0.9rem}
-.lang-selector{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
-.lang-btn{padding:6px 14px;border:1.5px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;cursor:pointer;font-size:0.85rem;font-weight:600;transition:all 0.2s}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 'Inter',system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;border-top:6px solid var(--red);padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0)}
+.skip{position:absolute;left:-9999px;top:8px;background:var(--ac);color:var(--on-ac);padding:8px 14px;border-radius:8px;z-index:10}
+.skip:focus{left:16px}
+main{max-width:680px;margin:0 auto;padding:28px 16px 64px}
+h1{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:clamp(1.7rem,6vw,2.1rem);line-height:1.2;margin:0 0 8px;letter-spacing:-0.02em;color:var(--ac)}
+.sub{color:var(--mu);margin:0 0 20px;font-size:1.05rem;font-weight:500}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.lang-selector{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.lang-btn{min-height:40px;padding:6px 14px;border:1.5px solid var(--bd);background:var(--card);color:var(--tx);border-radius:99px;cursor:pointer;font:600 0.9rem/1 inherit;font-family:inherit}
 .lang-btn:hover{border-color:var(--ac);color:var(--ac)}
-.lang-btn.active{background:var(--ac);border-color:var(--ac);color:#fff}
+.lang-btn[aria-pressed="true"]{background:var(--ac);border-color:var(--ac);color:var(--on-ac)}
+.note{background:var(--infob);color:var(--info);border-radius:10px;padding:10px 14px;font-size:0.9rem;margin:0 0 20px}
+.note[hidden]{display:none}
+.urg{border:2px solid var(--red);background:var(--card);border-radius:12px;padding:18px 18px 14px;margin:0 0 28px}
+.urg h2{font-size:1.1rem;margin:0 0 10px;color:var(--red);font-family:Georgia,serif}
+.urg ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.urg li{display:flex;gap:12px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--bd)}
+.urg li:last-child{border-bottom:none}
+.urg a{font-weight:800;font-size:1rem;flex:0 0 128px;color:var(--red);text-decoration:none;white-space:nowrap}
+.urg a:hover{text-decoration:underline}
+.urg span{color:var(--tx);font-size:0.9rem}
+.urg .small{font-size:0.8rem;color:var(--mu);margin:10px 0 0}
+fieldset{border:none;padding:0;margin:0 0 16px;min-width:0}
+legend{font-weight:700;font-size:1.1rem;padding:0;margin-bottom:6px;color:var(--ac)}
+.hint{color:var(--mu);font-size:0.9rem;margin:0 0 14px}
+.grid-opts{display:flex;flex-wrap:wrap;gap:10px}
+label.opt{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:9px 16px;background:var(--card);border:2px solid var(--bd);border-radius:99px;cursor:pointer;font-size:0.95rem;font-weight:600;color:var(--tx);user-select:none;-webkit-tap-highlight-color:transparent}
+label.opt:hover{border-color:var(--ac);color:var(--ac);background:var(--ac-light)}
+label.opt input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+label.opt:focus-within{outline:3px solid var(--focus);outline-offset:2px}
+label.opt.on,label.opt.on:hover{background:var(--ac);border-color:var(--ac);color:var(--on-ac)}
+label.opt.on::before{content:"✓";font-weight:700}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 8px}
+.tool{min-height:40px;padding:6px 14px;border:1.5px solid var(--bd);background:transparent;color:var(--tx);border-radius:8px;cursor:pointer;font:600 0.88rem/1 inherit;font-family:inherit}
+.tool:hover{border-color:var(--ac);color:var(--ac)}
+.tool:disabled{opacity:.45;cursor:default}
+.cnt{font-weight:700;font-size:1.1rem;margin:24px 0 16px;padding-bottom:12px;border-bottom:2px solid var(--bd);color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-left:4px solid var(--ac);border-radius:12px;padding:18px 18px 14px;margin:0 0 14px;overflow-wrap:anywhere}
+.card h3{margin:0 0 4px;font-size:1.12rem;line-height:1.3;font-weight:700;color:var(--ac)}
+.org{font-size:0.78rem;font-weight:700;color:var(--mu);margin:0 0 8px;text-transform:uppercase;letter-spacing:0.06em}
+.card p{margin:8px 0;font-size:0.95rem}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.badge{display:inline-block;font-size:0.7rem;font-weight:700;padding:3px 9px;border-radius:6px;letter-spacing:0.04em;text-transform:uppercase}
+.b-off{background:var(--okb);color:var(--ok)}
+.b-com{background:var(--infob);color:var(--info)}
+.b-chk{background:var(--wab);color:var(--wa)}
+.chk{background:var(--wab);color:var(--wa);border-radius:8px;padding:8px 12px;font-size:0.85rem!important}
+.card a{color:var(--ac);font-weight:600;text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
+.src{font-size:0.9rem}
+footer{font-size:0.82rem;color:var(--mu);border-top:2px solid var(--bd);margin-top:40px;padding-top:20px;line-height:1.6}
+footer a{color:inherit}
+@media (max-width:420px){.urg li{flex-direction:column;gap:0}.urg a{flex:none}}
+@media (prefers-reduced-motion:no-preference){label.opt,.lang-btn,.tool{transition:background .15s,border-color .15s,color .15s}}
+@media print{
+  body{border:none;background:#fff;color:#000}
+  .lang-selector,fieldset,.tools,.skip,.note{display:none!important}
+  .card{break-inside:avoid;border-color:#999}
+  .card a::after{content:" (" attr(href) ")";font-weight:400;word-break:break-all}
+  .urg a::after{content:none}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#results" id="skip">Skip to results</a>
 <main>
 <h1 id="main-title">Lewisham Support Finder</h1>
-<p class="sub" id="main-sub">Select your situation to find help from Lewisham Council. Nothing is saved.</p>
+<p class="sub" id="main-sub">Tick what applies to you to see free help in Lewisham. Your answers stay on your device: nothing is saved or sent.</p>
 
-<div class="lang-selector">
-  <button onclick="setLang('en')" class="lang-btn active" id="btn-en">English</button>
-  <button onclick="setLang('fr')" class="lang-btn" id="btn-fr">Français</button>
-  <button onclick="setLang('es')" class="lang-btn" id="btn-es">Español</button>
+<div class="lang-selector" role="group" aria-label="Language">
+  <button type="button" class="lang-btn" data-lang="en" aria-pressed="true" lang="en">English</button>
+  <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false" lang="fr">Français</button>
+  <button type="button" class="lang-btn" data-lang="es" aria-pressed="false" lang="es">Español</button>
 </div>
+<p class="note" id="lang-note" hidden></p>
 
-<section class="urg" aria-label="Emergency numbers">
-<h2 id="urg-title">🚨 Essential numbers</h2>
+<section class="urg" aria-labelledby="urg-title">
+<h2 id="urg-title">Essential numbers</h2>
 <ul>
-<li><a href="tel:999">999</a><span id="urg-999">Emergency (police, fire, ambulance)</span></li>
-<li><a href="tel:111">111</a><span id="urg-111">NHS medical advice (press 2 for mental health)</span></li>
-<li><a href="tel:101">101</a><span id="urg-101">Police non-emergency</span></li>
-<li><a href="tel:02083146000">020 8314 6000</a><span id="urg-council">Lewisham Council 24/7 switchboard</span></li>
-<li><a href="tel:08081780939">0808 178 0939</a><span id="urg-homeless">Homelessness emergency (out of hours)</span></li>
-<li><a href="tel:08002315453">0800 231 5453</a><span id="urg-citizens">Citizens Advice Lewisham (benefits, debt, housing)</span></li>
-<li><a href="tel:03300583464">0330 058 3464</a><span id="urg-connections">Community Connections Lewisham (food, local support)</span></li>
-<li><a href="tel:08000282028">0800 028 2028</a><span id="urg-repairs">Emergency housing repairs (Council tenants)</span></li>
+<li><a href="tel:999">999</a><span data-i18n="urg999">Emergency (police, fire, ambulance)</span></li>
+<li><a href="tel:111">111</a><span data-i18n="urg111">NHS urgent medical advice. Press 2 for a mental health crisis</span></li>
+<li><a href="tel:116123">116 123</a><span data-i18n="urgSam">Samaritans, free, 24/7, if you need to talk</span></li>
+<li><a href="tel:08082000247">0808 2000 247</a><span data-i18n="urgDA">National Domestic Abuse Helpline, free, 24/7</span></li>
+<li><a href="tel:101">101</a><span data-i18n="urg101">Police, non-emergency</span></li>
+<li><a href="tel:02083146000">020 8314 6000</a><span data-i18n="urgCouncil">Lewisham Council main number (out of hours: emergencies only)</span></li>
+<li><a href="tel:03300583464">0330 058 3464</a><span data-i18n="urgConnections">Community Connections Lewisham (food, local support)</span></li>
+<li><a href="tel:08002315453">0800 231 5453</a><span data-i18n="urgAdvice">Advice Lewisham (free advice: benefits, debt, housing)</span></li>
+<li><a href="tel:08088004444">0808 800 4444</a><span data-i18n="urgShelter">Shelter housing helpline (homeless or at risk)</span></li>
 </ul>
+<p class="small" data-i18n="urgSmall">Calls to 0800 and 0808 numbers are free from UK landlines and mobiles.</p>
 </section>
 
 <fieldset><legend id="legend-situation">Your situation</legend>
-<div class="grid-opts">
-<label class="opt"><input type="checkbox" value="crisis"> <span data-i18n="crisis">Sudden crisis</span></label>
-<label class="opt"><input type="checkbox" value="housing"> <span data-i18n="housing">Rent or housing costs</span></label>
-<label class="opt"><input type="checkbox" value="children"> <span data-i18n="children">Children at school</span></label>
-<label class="opt"><input type="checkbox" value="counciltax"> <span data-i18n="counciltax">Council Tax help</span></label>
-<label class="opt"><input type="checkbox" value="careleaver"> <span data-i18n="careleaver">Care leaver (under 25)</span></label>
-<label class="opt"><input type="checkbox" value="food"> <span data-i18n="food">Food or essentials</span></label>
-<label class="opt"><input type="checkbox" value="adult"> <span data-i18n="adult">Single adult / no children</span></label>
-<label class="opt"><input type="checkbox" value="disability"> <span data-i18n="disability">Disability or health condition</span></label>
-<label class="opt"><input type="checkbox" value="carer"> <span data-i18n="carer">I care for someone (unpaid)</span></label>
-<label class="opt"><input type="checkbox" value="mental"> <span data-i18n="mental">Mental health support</span></label>
-<label class="opt"><input type="checkbox" value="senior"> <span data-i18n="senior">Older person (60+/pension age)</span></label>
-<label class="opt"><input type="checkbox" value="nrpf"> <span data-i18n="nrpf">No recourse to public funds</span></label>
-<label class="opt"><input type="checkbox" value="urgent"> <span data-i18n="urgent">Urgent medical/dental help</span></label>
-<label class="opt"><input type="checkbox" value="apps"> <span data-i18n="apps">Useful apps</span></label>
-</div>
+<p class="hint" data-i18n="hint">You can tick several boxes. The most relevant help appears first.</p>
+<div class="grid-opts" id="opts"></div>
 </fieldset>
 
-<div class="cnt" id="cnt"></div>
+<div class="tools">
+  <button type="button" class="tool" id="btn-clear">Clear my choices</button>
+  <button type="button" class="tool" id="btn-print">Print or save as PDF</button>
+</div>
+
+<h2 class="cnt" id="results" tabindex="-1" aria-live="polite"></h2>
 <div id="out"></div>
 
-<footer id="main-footer">
-<p><strong id="footer-disclaimer">Independent, unofficial resource. Not affiliated with Lewisham Council or the UK Government.</strong></p>
-<p id="footer-info">Information is for general guidance only. We accept no liability for any loss or damage arising from its use. Always verify details with the official body.</p>
-<p id="footer-advice">No Professional Advice: This site does not provide legal, financial, or professional advice.</p>
-<p id="footer-copy">© 2026 Lewisham Support Finder. All rights reserved. Lewisham Council's names and logos are their property.</p>
-<p id="footer-version">Unofficial test version based on public documents (CRF policy 2026, FSM guidance, Care Leavers offer). Always check with the Council before applying.</p>
+<footer>
+<p><strong data-i18n="disclaimer">Independent, unofficial guide. Not affiliated with Lewisham Council, the NHS or the UK Government.</strong></p>
+<p data-i18n="footerBadges">“Official site” means the link goes to a government, NHS or Council page. “To check” means a detail (amount, phone number, opening hours) could not be confirmed and may have changed.</p>
+<p data-i18n="footerInfo">This information is general guidance only and may change. Always check with the organisation before applying. We accept no liability for any loss arising from its use.</p>
+<p data-i18n="footerAdvice">This site does not give legal, financial or professional advice. For free advice, contact Citizens Advice or one of the services listed.</p>
+<p data-i18n="footerVersion">Last reviewed: 8 November 2026. Sources: public pages of Lewisham Council, GOV.UK, NHS and local charities.</p>
+<p data-i18n="footerCopy">© 2026 Lewisham Support Finder.</p>
 </footer>
 </main>
+
 <script>
-var I18N = {
-  en: {
-    title: "Lewisham Support Finder",
-    subtitle: "Select your situation to find help from Lewisham Council. Nothing is saved.",
-    situation: "Your situation",
-    crisis: "Sudden crisis",
-    housing: "Rent or housing costs",
-    children: "Children at school",
-    counciltax: "Council Tax help",
-    careleaver: "Care leaver (under 25)",
-    food: "Food or essentials",
-    adult: "Single adult / no children",
-    disability: "Disability or health condition",
-    carer: "I care for someone (unpaid)",
-    mental: "Mental health support",
-    senior: "Older person (60+/pension age)",
-    nrpf: "No recourse to public funds",
-    urgent: "Urgent medical/dental help",
-    apps: "Useful apps",
-    count: "results for your situation",
-    prompt: "Select at least one option to see support",
-    verified: "Verified source",
-    toCheck: "To check",
-    source: "Source",
-    emergency: "Essential numbers",
-    urg999: "Emergency (police, fire, ambulance)",
-    urg111: "NHS medical advice (press 2 for mental health)",
-    urg101: "Police non-emergency",
-    urgCouncil: "Lewisham Council 24/7 switchboard",
-    urgHomeless: "Homelessness emergency (out of hours)",
-    urgCitizens: "Citizens Advice Lewisham (benefits, debt, housing)",
-    urgConnections: "Community Connections Lewisham (food, local support)",
-    urgRepairs: "Emergency housing repairs (Council tenants)",
-    disclaimer: "Independent, unofficial resource. Not affiliated with Lewisham Council or the UK Government.",
-    footerInfo: "Information is for general guidance only. We accept no liability for any loss or damage arising from its use. Always verify details with the official body.",
-    footerAdvice: "No Professional Advice: This site does not provide legal, financial, or professional advice.",
-    footerCopy: "© 2026 Lewisham Support Finder. All rights reserved. Lewisham Council's names and logos are their property.",
-    footerVersion: "Unofficial test version based on public documents (CRF policy 2026, FSM guidance, Care Leavers offer). Always check with the Council before applying."
-  },
-  fr: {
-    title: "Trouver de l'aide à Lewisham",
-    subtitle: "Sélectionnez votre situation pour trouver de l'aide auprès du Conseil de Lewisham. Rien n'est enregistré.",
-    situation: "Votre situation",
-    crisis: "Crise soudaine",
-    housing: "Loyer ou frais de logement",
-    children: "Enfants scolarisés",
-    counciltax: "Aide pour la taxe locale",
-    careleaver: "Jeune sortant de l'aide sociale (-25 ans)",
-    food: "Nourriture ou produits essentiels",
-    adult: "Adulte seul / sans enfants",
-    disability: "Handicap ou problème de santé",
-    carer: "J'aide un proche (non rémunéré)",
-    mental: "Soutien en santé mentale",
-    senior: "Personne âgée (60+ / âge de la retraite)",
-    nrpf: "Pas de recours aux fonds publics",
-    urgent: "Aide médicale/dentaire urgente",
-    apps: "Applications utiles",
-    count: "résultats pour votre situation",
-    prompt: "Sélectionnez au moins une option pour voir l'aide",
-    verified: "Source vérifiée",
-    toCheck: "À vérifier",
-    source: "Source",
-    emergency: "Numéros indispensables",
-    urg999: "Urgences (police, pompiers, ambulance)",
-    urg111: "Conseil médical NHS (tapez 2 pour la santé mentale)",
-    urg101: "Police non-urgence",
-    urgCouncil: "Standard du Conseil de Lewisham (24h/24)",
-    urgHomeless: "Urgence sans-abri (hors horaires)",
-    urgCitizens: "Citizens Advice Lewisham (aides, dettes, logement)",
-    urgConnections: "Community Connections Lewisham (alimentation, soutien local)",
-    urgRepairs: "Réparations d'urgence (locataires du Conseil)",
-    disclaimer: "Ressource indépendante et non officielle. Non affiliée au Conseil de Lewisham ni au gouvernement britannique.",
-    footerInfo: "Les informations sont fournies à titre indicatif. Nous déclinons toute responsabilité en cas de perte ou de dommage résultant de leur utilisation. Vérifiez toujours auprès de l'organisme officiel.",
-    footerAdvice: "Pas de conseil professionnel : ce site ne fournit pas de conseils juridiques, financiers ou professionnels.",
-    footerCopy: "© 2026 Lewisham Support Finder. Tous droits réservés. Les noms et logos du Conseil de Lewisham sont leur propriété.",
-    footerVersion: "Version de test non officielle, basée sur des documents publics (politique CRF 2026, guide FSM, offre Care Leavers). Vérifiez toujours auprès du Conseil avant de faire une demande."
-  },
-  es: {
-    title: "Buscador de ayudas de Lewisham",
-    subtitle: "Seleccione su situación para encontrar ayuda del Consejo de Lewisham. No se guarda nada.",
-    situation: "Su situación",
-    crisis: "Crisis repentina",
-    housing: "Alquiler o costes de vivienda",
-    children: "Niños en la escuela",
-    counciltax: "Ayuda con el impuesto municipal",
-    careleaver: "Joven que sale del sistema de acogida (-25 años)",
-    food: "Comida o productos esenciales",
-    adult: "Adulto solo / sin hijos",
-    disability: "Discapacidad o problema de salud",
-    carer: "Cuido a alguien (no remunerado)",
-    mental: "Apoyo en salud mental",
-    senior: "Persona mayor (60+ / edad de jubilación)",
-    nrpf: "Sin acceso a fondos públicos",
-    urgent: "Ayuda médica/dental urgente",
-    apps: "Aplicaciones útiles",
-    count: "resultados para su situación",
-    prompt: "Seleccione al menos una opción para ver la ayuda",
-    verified: "Fuente verificada",
-    toCheck: "Por verificar",
-    source: "Fuente",
-    emergency: "Números esenciales",
-    urg999: "Emergencias (policía, bomberos, ambulancia)",
-    urg111: "Consejo médico del NHS (marque 2 para salud mental)",
-    urg101: "Policía no urgente",
-    urgCouncil: "Centralita del Consejo de Lewisham (24h/7)",
-    urgHomeless: "Emergencia para personas sin hogar (fuera de horario)",
-    urgCitizens: "Citizens Advice Lewisham (ayudas, deudas, vivienda)",
-    urgConnections: "Community Connections Lewisham (alimentación, apoyo local)",
-    urgRepairs: "Reparaciones de emergencia (inquilinos del Consejo)",
-    disclaimer: "Recurso independiente y no oficial. No afiliado al Consejo de Lewisham ni al Gobierno británico.",
-    footerInfo: "La información es solo orientativa. No aceptamos responsabilidad por pérdidas o daños derivados de su uso. Verifique siempre con el organismo oficial.",
-    footerAdvice: "Sin asesoramiento profesional: este sitio no ofrece asesoramiento legal, financiero o profesional.",
-    footerCopy: "© 2026 Lewisham Support Finder. Todos los derechos reservados. Los nombres y logotipos del Consejo de Lewisham son de su propiedad.",
-    footerVersion: "Versión de prueba no oficial basada en documentos públicos (política CRF 2026, guía FSM, oferta Care Leavers). Verifique siempre con el Consejo antes de solicitar."
+var CATS=["crisis","housing","food","debt","counciltax","children","pregnancy","family","careleaver","adult","disability","carer","mental","abuse","senior","nrpf","urgent","savings","apps"];
+
+var I18N={
+en:{
+ title:"Lewisham Support Finder",
+ subtitle:"Tick what applies to you to see free help in Lewisham. Your answers stay on your device: nothing is saved or sent.",
+ skip:"Skip to results",
+ situation:"Your situation",
+ hint:"You can tick several boxes. The most relevant help appears first.",
+ crisis:"Sudden crisis or emergency",housing:"Rent, housing or homelessness",food:"Food or essentials",debt:"Debt or money worries",counciltax:"Council Tax help",children:"Children at school",pregnancy:"Pregnant or new baby",family:"Family going through a hard time",careleaver:"Care leaver (under 25)",adult:"Adult on a low income",disability:"Disability or health condition",carer:"I care for someone (unpaid)",mental:"Mental health",abuse:"Domestic abuse",senior:"Older person (pension age)",nrpf:"No recourse to public funds (NRPF)",urgent:"Urgent medical or dental help",savings:"Discounts and savings",apps:"Useful apps",
+ one:"result for your situation",many:"results for your situation",
+ prompt:"Not sure where to start? These services can look at your whole situation:",
+ official:"Official site",community:"Charity / community",commercial:"Commercial",toCheck:"To check",
+ checkLabel:"To check:",source:"More information",
+ clear:"Clear my choices",print:"Print or save as PDF",
+ emergency:"Essential numbers",
+ urg999:"Emergency (police, fire, ambulance)",
+ urg111:"NHS urgent medical advice. Press 2 for a mental health crisis",
+ urgSam:"Samaritans, free, 24/7, if you need to talk",
+ urgDA:"National Domestic Abuse Helpline, free, 24/7",
+ urg101:"Police, non-emergency",
+ urgCouncil:"Lewisham Council main number (out of hours: emergencies only)",
+ urgConnections:"Community Connections Lewisham (food, local support)",
+ urgAdvice:"Advice Lewisham (free advice: benefits, debt, housing)",
+ urgShelter:"Shelter housing helpline (homeless or at risk)",
+ urgSmall:"Calls to 0800 and 0808 numbers are free from UK landlines and mobiles.",
+ langNote:"",
+ disclaimer:"Independent, unofficial guide. Not affiliated with Lewisham Council, the NHS or the UK Government.",
+ footerBadges:"“Official site” means the link goes to a government, NHS or Council page. “To check” means a detail (amount, phone number, opening hours) could not be confirmed and may have changed.",
+ footerInfo:"This information is general guidance only and may change. Always check with the organisation before applying. We accept no liability for any loss arising from its use.",
+ footerAdvice:"This site does not give legal, financial or professional advice. For free advice, contact Citizens Advice or one of the services listed.",
+ footerVersion:"Last reviewed: 8 November 2026. Sources: public pages of Lewisham Council, GOV.UK, NHS and local charities.",
+ footerCopy:"© 2026 Lewisham Support Finder."
+},
+fr:{
+ title:"Trouver de l'aide à Lewisham",
+ subtitle:"Cochez ce qui vous correspond pour voir les aides gratuites à Lewisham. Vos réponses restent sur votre appareil : rien n'est enregistré ni envoyé.",
+ skip:"Aller aux résultats",
+ situation:"Votre situation",
+ hint:"Vous pouvez cocher plusieurs cases. Les aides les plus adaptées s'affichent en premier.",
+ crisis:"Coup dur soudain ou urgence",housing:"Loyer, logement ou sans-abri",food:"Nourriture ou produits de première nécessité",debt:"Dettes ou soucis d'argent",counciltax:"Aide pour la Council Tax (taxe locale)",children:"Enfants scolarisés",pregnancy:"Grossesse ou nouveau-né",family:"Famille en difficulté",careleaver:"Jeune sorti de l'aide sociale à l'enfance (moins de 25 ans)",adult:"Adulte aux revenus modestes",disability:"Handicap ou problème de santé",carer:"J'aide un proche (sans être payé)",mental:"Santé mentale",abuse:"Violences conjugales ou familiales",senior:"Personne âgée (âge de la retraite)",nrpf:"Sans droit aux aides publiques (NRPF)",urgent:"Soins médicaux ou dentaires urgents",savings:"Réductions et bons plans",apps:"Applications utiles",
+ one:"résultat pour votre situation",many:"résultats pour votre situation",
+ prompt:"Vous ne savez pas par où commencer ? Ces services regardent toute votre situation :",
+ official:"Site officiel",community:"Association",commercial:"Commercial",toCheck:"À vérifier",
+ checkLabel:"À vérifier :",source:"En savoir plus",
+ clear:"Effacer mes choix",print:"Imprimer ou enregistrer en PDF",
+ emergency:"Numéros indispensables",
+ urg999:"Urgences (police, pompiers, ambulance)",
+ urg111:"Conseil médical urgent du NHS. Tapez 2 pour une crise de santé mentale",
+ urgSam:"Samaritans, gratuit, 24 h/24, pour parler à quelqu'un",
+ urgDA:"Ligne nationale contre les violences conjugales, gratuite, 24 h/24",
+ urg101:"Police, hors urgence",
+ urgCouncil:"Standard de la mairie de Lewisham (la nuit : urgences seulement)",
+ urgConnections:"Community Connections Lewisham (alimentation, soutien local)",
+ urgAdvice:"Advice Lewisham (conseil gratuit : aides, dettes, logement)",
+ urgShelter:"Shelter, ligne d'aide au logement (sans-abri ou menacé de l'être)",
+ urgSmall:"Les appels vers les numéros en 0800 et 0808 sont gratuits depuis un fixe ou un portable britannique.",
+ langNote:"Les fiches détaillées sont en anglais, comme les démarches officielles. Astuce : votre navigateur peut traduire la page (clic droit > Traduire).",
+ disclaimer:"Guide indépendant et non officiel. Sans lien avec la mairie de Lewisham, le NHS ou le gouvernement britannique.",
+ footerBadges:"« Site officiel » : le lien mène à une page du gouvernement, du NHS ou de la mairie. « À vérifier » : un détail (montant, numéro, horaires) n'a pas pu être confirmé et a pu changer.",
+ footerInfo:"Ces informations sont données à titre indicatif et peuvent changer. Vérifiez toujours auprès de l'organisme avant de faire une demande. Nous déclinons toute responsabilité en cas de perte liée à leur utilisation.",
+ footerAdvice:"Ce site ne donne pas de conseil juridique, financier ou professionnel. Pour un conseil gratuit, contactez Citizens Advice ou l'un des services listés.",
+ footerVersion:"Dernière relecture : 8 novembre 2026. Sources : pages publiques de la mairie de Lewisham, de GOV.UK, du NHS et d'associations locales.",
+ footerCopy:"© 2026 Lewisham Support Finder."
+},
+es:{
+ title:"Buscador de ayudas de Lewisham",
+ subtitle:"Marque lo que corresponde a su situación para ver las ayudas gratuitas en Lewisham. Sus respuestas se quedan en su dispositivo: no se guarda ni se envía nada.",
+ skip:"Ir a los resultados",
+ situation:"Su situación",
+ hint:"Puede marcar varias casillas. Las ayudas más adecuadas aparecen primero.",
+ crisis:"Crisis repentina o emergencia",housing:"Alquiler, vivienda o sin hogar",food:"Comida o productos básicos",debt:"Deudas o problemas de dinero",counciltax:"Ayuda con el Council Tax (impuesto municipal)",children:"Niños en edad escolar",pregnancy:"Embarazo o recién nacido",family:"Familia en dificultad",careleaver:"Joven extutelado (menos de 25 años)",adult:"Adulto con ingresos bajos",disability:"Discapacidad o problema de salud",carer:"Cuido a alguien (sin cobrar)",mental:"Salud mental",abuse:"Violencia doméstica",senior:"Persona mayor (edad de jubilación)",nrpf:"Sin derecho a ayudas públicas (NRPF)",urgent:"Atención médica o dental urgente",savings:"Descuentos y ahorro",apps:"Aplicaciones útiles",
+ one:"resultado para su situación",many:"resultados para su situación",
+ prompt:"¿No sabe por dónde empezar? Estos servicios estudian toda su situación:",
+ official:"Sitio oficial",community:"Asociación",commercial:"Comercial",toCheck:"Por verificar",
+ checkLabel:"Por verificar:",source:"Más información",
+ clear:"Borrar mis opciones",print:"Imprimir o guardar en PDF",
+ emergency:"Números esenciales",
+ urg999:"Emergencias (policía, bomberos, ambulancia)",
+ urg111:"Consejo médico urgente del NHS. Marque 2 para una crisis de salud mental",
+ urgSam:"Samaritans, gratis, 24 h, si necesita hablar",
+ urgDA:"Línea nacional contra la violencia doméstica, gratis, 24 h",
+ urg101:"Policía, no urgente",
+ urgCouncil:"Centralita del Ayuntamiento de Lewisham (de noche: solo emergencias)",
+ urgConnections:"Community Connections Lewisham (alimentación, apoyo local)",
+ urgAdvice:"Advice Lewisham (asesoría gratuita: ayudas, deudas, vivienda)",
+ urgShelter:"Shelter, línea de ayuda con la vivienda (sin hogar o en riesgo)",
+ urgSmall:"Las llamadas a números 0800 y 0808 son gratuitas desde fijos y móviles del Reino Unido.",
+ langNote:"Las fichas detalladas están en inglés, como los trámites oficiales. Consejo: su navegador puede traducir la página (clic derecho > Traducir).",
+ disclaimer:"Guía independiente y no oficial. Sin relación con el Ayuntamiento de Lewisham, el NHS ni el Gobierno británico.",
+ footerBadges:"«Sitio oficial»: el enlace lleva a una página del Gobierno, del NHS o del Ayuntamiento. «Por verificar»: un dato (importe, teléfono, horario) no se pudo confirmar y puede haber cambiado.",
+ footerInfo:"Esta información es solo orientativa y puede cambiar. Compruebe siempre con el organismo antes de solicitar. No aceptamos responsabilidad por pérdidas derivadas de su uso.",
+ footerAdvice:"Este sitio no ofrece asesoramiento legal, financiero ni profesional. Para un consejo gratuito, contacte con Citizens Advice o uno de los servicios de la lista.",
+ footerVersion:"Última revisión: 8 de noviembre de 2026. Fuentes: páginas públicas del Ayuntamiento de Lewisham, GOV.UK, el NHS y asociaciones locales.",
+ footerCopy:"© 2026 Lewisham Support Finder."
+}};
+
+/* Each entry: k = situations, t = title, o = organisation, d = description,
+   u = link, l = link label, c = what still needs checking (optional),
+   ty = "biz" for commercial (otherwise worked out from the link), start = shown as a first step */
+var A=[
+{start:1,k:["adult","children","senior","disability","carer","crisis","housing","food","debt","family"],t:"BetterOff Lewisham (benefits calculator)",o:"Lewisham Council",d:"Free online tool to check which benefits and grants you can claim, and get help applying. It can also help with job searches, appealing benefit decisions and budgeting. Available in over 130 languages. You can share your account securely with an adviser or friend if you need help using it. You need to create an account first.",u:"https://lewisham.betteroff.org.uk",l:"lewisham.betteroff.org.uk"},
+{start:1,k:["food","crisis","senior","adult","family","debt"],t:"Community Connections Lewisham",o:"Lewisham Council / Age UK Lewisham and Southwark",d:"Free single point of contact for adults (18+) in Lewisham. The best first step to find the right food bank, community meal or social supermarket, and to get help with isolation, safety, digital skills and community transport. Lewisham Council does not run food banks itself but funds and signposts to this network. Call 0330 058 3464 (Mon-Fri 9.30am-4pm, Thursday until 1pm).",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Cost of living",c:"Opening hours."},
+{k:["debt","adult","housing","crisis"],t:"Advice Lewisham and Citizens Advice (free advice on benefits, debt, housing, work)",o:"Advice Lewisham / Citizens Advice",d:"Free, confidential and independent advice. Advice Lewisham: 0800 231 5453 (number given on the Council's cost-of-living page). Citizens Advice national Adviceline for England: 0800 144 8848, or get help online.",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Cost of living",c:"Advice Lewisham opening hours."},
+{k:["debt","adult"],t:"National Debtline (free debt advice)",o:"Money Advice Trust (charity)",d:"Free, confidential debt advice by phone or online, including help with priority debts like rent, Council Tax and energy. Call 0808 808 4000. They can also tell you about Breathing Space, a legal scheme that can pause most debt collection for up to 60 days.",u:"https://nationaldebtline.org/",l:"nationaldebtline.org"},
+{k:["debt","adult"],t:"StepChange Debt Charity",o:"StepChange (charity)",d:"Free debt advice and debt solutions (for example a debt management plan) online or by phone on 0800 138 1111. They never charge fees.",u:"https://www.stepchange.org/",l:"stepchange.org"},
+{k:["urgent","adult","children"],t:"University Hospital Lewisham, Emergency Department (A&E)",o:"Lewisham and Greenwich NHS Trust",d:"24/7 emergency department for serious injuries and life-threatening emergencies, for all ages. Address: Lewisham High Street, London SE13 6LH. Do not use A&E for minor problems: call NHS 111 first if you are unsure.",u:"https://www.nhs.uk/services/hospital/university-hospital-lewisham/X1335/departments/SRV0001/accident-and-emergency-services",l:"NHS, A&E services"},
+{k:["urgent","children"],t:"Children's Emergency Department (Lewisham)",o:"Lewisham and Greenwich NHS Trust",d:"Separate 24/7 emergency department for children under 16, opposite the main reception (Yellow Zone) at University Hospital Lewisham, Lewisham High Street, SE13 6LH. Reception: 020 8333 3138.",u:"https://www.lewishamandgreenwich.nhs.uk/service-detail/service/childrens-emergency-department-lewisham-59/",l:"Lewisham and Greenwich NHS Trust, Children's A&E"},
+{k:["urgent","adult"],t:"Same Day Emergency Care (SDEC), Lewisham Hospital",o:"Lewisham and Greenwich NHS Trust",d:"An alternative to A&E for some urgent conditions, if you are referred by a healthcare professional or NHS 111. It is next to the main hospital building, with its own entrance. Open Mon-Fri 8am-8pm, Sat-Sun 8am-6pm. Outside these hours you will be directed to the Emergency Department.",u:"https://www.lewishamandgreenwich.nhs.uk/lewisham-sdec",l:"Lewisham and Greenwich NHS Trust, SDEC"},
+{k:["urgent","adult","children"],t:"Urgent dental care",o:"NHS",d:"For sudden dental problems (pain, swelling, bleeding, a broken tooth), contact your usual NHS dentist first: they may offer an urgent appointment. If you have no dentist or it is out of hours, call NHS 111 for referral to an urgent dental service. Do not go to A&E for dental problems unless there is heavy bleeding, swelling affecting breathing or a serious injury.",u:"https://www.nhs.uk/service-search/find-a-dentist",l:"NHS, Find a dentist"},
+{k:["urgent","mental","adult","crisis"],t:"Mental health crisis: NHS 111, option 2 (24/7)",o:"NHS / South London and Maudsley (SLaM)",d:"For anyone in a mental health crisis, or worried about someone else. Call 111 and choose option 2 to speak to a trained mental health professional, 24 hours a day, 7 days a week. If someone is at immediate risk of harm, call 999 or go to A&E at Lewisham Hospital. The Council's mental health page also gives the South London and Maudsley crisis line: 0800 731 2864.",u:"https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/",l:"NHS, Urgent help for mental health"},
+{k:["mental","adult","crisis"],t:"Samaritans and Shout (someone to talk to)",o:"Samaritans / Shout (charities)",d:"Samaritans: call 116 123 free, any time, day or night, if you are struggling. Shout: if you prefer to text, send SHOUT to 85258 (free, 24/7, confidential).",u:"https://www.samaritans.org/",l:"samaritans.org"},
+{k:["urgent","mental","children"],t:"Lewisham Child and Adolescent Crisis Service",o:"South London and Maudsley NHS",d:"For children and young people up to 18 in a mental health crisis. Based at University Hospital Lewisham A&E. Urgent referrals (Mon-Fri, 9am-5pm) via Kaleidoscope: 020 3228 1000. Can sometimes offer same-day appointments to avoid A&E.",u:"https://slam.nhs.uk/service-detail/service/lewisham-child-and-adolescent-crisis-service-198",l:"SLaM, Child and Adolescent Crisis Service"},
+{k:["crisis"],t:"Crisis and Resilience Fund: crisis payments",o:"Lewisham Council",d:"Emergency help for Lewisham residents facing an immediate, unexpected crisis (for example fire, flood, a broken essential appliance, a health emergency, or fleeing domestic abuse). Not for ongoing low income. Maximum amounts include: food £40 per adult or £20 per child per week; hygiene £30 per household per week; energy £120 per household (£70 single person); water £60; internet £35; clothing up to £120; transport up to £200; one essential item of furniture or appliance.",u:"https://lewisham.gov.uk/myservices/benefits/crisis-and-resilience-fund",l:"Lewisham Council, Crisis and Resilience Fund",c:"In November 2026 the Council page says the new funding is still being planned and details will be published soon. The amounts above may not apply yet: check the page or call the Council before counting on them."},
+{k:["housing","crisis"],t:"Crisis and Resilience Fund: housing payments",o:"Lewisham Council",d:"Help with housing costs if you receive Housing Benefit or the housing element of Universal Credit but it does not cover all your rent. This replaces what used to be called Discretionary Housing Payment (DHP). It can cover a rent shortfall, a deposit, rent in advance or moving costs, usually for short-term difficulties. You must explain why you need the extra support. Each application is assessed individually.",u:"https://lewisham.gov.uk/myservices/benefits/housing-benefit/discretionary-housing-payments",l:"Lewisham Council, CRF Housing Payments"},
+{k:["housing","crisis"],t:"Shelter (housing advice, homelessness)",o:"Shelter (charity)",d:"Free expert housing advice if you are homeless, about to lose your home, or have problems with your landlord, repairs or eviction. Emergency helpline: 0808 800 4444. If you are homeless or at risk in the next 8 weeks, you can also ask Lewisham Council for homelessness help: the Council has a legal duty to assess you.",u:"https://england.shelter.org.uk/get_help",l:"Shelter, Get help"},
+{k:["housing"],t:"Emergency repairs for Council tenants",o:"Lewisham Council",d:"If you rent your home from Lewisham Council and have an emergency repair (for example a serious leak, no heating or electricity, or an insecure door), call 0800 028 2028.",u:"https://lewisham.gov.uk/myservices/housing",l:"Lewisham Council, Housing",c:"Phone number (it was the Lewisham Homes number before the service returned to the Council) and the exact page."},
+{k:["counciltax","adult","debt"],t:"Council Tax Reduction",o:"Lewisham Council",d:"If you have a low income, you can apply for a reduction on your Council Tax bill. Universal Credit does not cover Council Tax, so you must apply separately to Lewisham Council (the same online form is used for Housing Benefit). The Council looks at your income, savings and household.",u:"https://lewisham.gov.uk/myservices/benefits/housing-benefit/apply-for-housing-benefit",l:"Lewisham Council, Apply for Housing Benefit or Council Tax Reduction"},
+{k:["counciltax","adult","senior"],t:"Single Person Discount (25% off Council Tax)",o:"Lewisham Council",d:"If you are the only adult (18+) living in your home as your main home, you can get 25% off your Council Tax. You cannot claim it for a second home. Some people do not count as adults for this (for example full-time students, some carers and people with a severe mental impairment). Apply online with your My Lewisham account. The Council regularly reviews this discount, so you may receive a review letter.",u:"https://lewisham.gov.uk/myservices/counciltax/reductions/council-tax---apply-for--or-end--a-single-person-discount",l:"Lewisham Council, Single Person Discount"},
+{k:["disability","counciltax"],t:"Disability Reduction (lower Council Tax band)",o:"Lewisham Council",d:"If your home has been adapted for a disabled person who lives there (for example an extra bathroom or kitchen, space for a wheelchair, or a room mainly used for their needs), your bill may be charged at one band lower. For example, a Band D home pays the Band C rate. Apply online with your Council Tax account number and GP details. The Council may visit to check the adaptations.",u:"https://lewisham.gov.uk/myservices/counciltax/reductions/council-tax-for-people-with-a-disability",l:"Lewisham Council, Disability Reduction"},
+{k:["disability","counciltax","carer"],t:"Severe Mental Impairment (SMI) Council Tax discount",o:"Lewisham Council",d:"If someone aged 18 or over in your home has a severe mental impairment (for example advanced dementia), confirmed by a doctor, and receives certain benefits (such as PIP, DLA or Attendance Allowance), they do not count for Council Tax. This can mean a discount or a full exemption. Contact Lewisham Council for the form.",u:"https://lewisham.gov.uk/myservices/counciltax/council-tax-reductions-and-exemptions/",l:"Lewisham Council, Council Tax reductions"},
+{k:["carer","counciltax"],t:"Council Tax discount for carers",o:"Lewisham Council",d:"Some carers do not count for Council Tax (they are 'disregarded'), for example if you care for someone for at least 35 hours a week and meet other conditions. This can lower the bill. Contact Lewisham Council's Council Tax team to check.",u:"https://lewisham.gov.uk/myservices/counciltax/council-tax-reductions-and-exemptions/",l:"Lewisham Council, Council Tax reductions"},
+{k:["children"],t:"Free school meals",o:"Lewisham Council",d:"From September 2026, children in any household receiving Universal Credit in England can get free school meals. Other qualifying benefits include income-related ESA and the guarantee part of Pension Credit. In London, all primary school children (Reception to Year 6) also get free meals through the Mayor of London's scheme. Even if your child already gets a universal free meal, register: it can bring extra funding (Pupil Premium) to the school.",u:"https://lewisham.gov.uk/myservices/education/student-pupil-support/free-school-meals-and-extra-support-for-your-child",l:"Lewisham Council, Free school meals",c:"How long the London universal primary meals continue."},
+{k:["children","pregnancy"],t:"Child Benefit",o:"HMRC (GOV.UK)",d:"A payment for anyone responsible for a child. 2026-27 rates: £27.05 a week for the eldest or only child and £17.90 a week for each other child. Claim on the HMRC app or GOV.UK. Claiming also protects your National Insurance record for your State Pension, even if you choose not to be paid. It can only be backdated 3 months, so claim soon after a birth or when a child comes to live with you.",u:"https://www.gov.uk/child-benefit",l:"GOV.UK, Child Benefit"},
+{k:["children"],t:"Tax-Free Childcare",o:"HMRC (GOV.UK)",d:"For working parents. For every £8 you pay into a childcare account, the government adds £2, up to £500 per child every 3 months (£1,000 if the child is disabled). You must each earn at least the equivalent of 16 hours a week at the National Minimum or Living Wage. You cannot use it at the same time as Universal Credit childcare costs or childcare vouchers.",u:"https://www.gov.uk/tax-free-childcare",l:"GOV.UK, Tax-Free Childcare"},
+{k:["children"],t:"Universal Credit help with childcare costs",o:"DWP (GOV.UK)",d:"If you receive Universal Credit and you work (or have a job offer), you can get back up to 85% of your childcare costs, up to a monthly maximum for one child and for two or more children. You usually pay the provider first, then report the costs.",u:"https://www.gov.uk/universal-credit/childcare",l:"GOV.UK, Universal Credit childcare",c:"Current monthly maximums (in 2025-26: £1,031.88 for one child, £1,768.94 for two or more)."},
+{k:["children","family"],t:"Kinship carer support",o:"Lewisham Council (Kinship Team)",d:"If you are raising a child who is not your own (for example a grandchild, niece or nephew), the Kinship Team can advise on your rights, financial support where eligible, Family Hubs, peer support groups ('Sip & Chat'), and help with education, health and housing. Contact the team through the Council website.",u:"https://lewisham.gov.uk/myservices/children-and-young-people-service/looking-after-someone-elses-child",l:"Lewisham Council, Kinship care"},
+{k:["pregnancy","children","food"],t:"Healthy Start (food and vitamins)",o:"NHS",d:"A prepaid card for milk, fruit, vegetables, pulses and infant formula if you are at least 10 weeks pregnant or have a child under 4, and receive certain benefits (for example Universal Credit with take-home pay of £408 a month or less). £4.25 a week in pregnancy and for each child aged 1 to 4; £8.50 a week for each baby under 1. Also gives free vitamins. Apply online or call 0300 330 7010. If you are under 18 and pregnant, you qualify without benefits.",u:"https://www.healthystart.nhs.uk/",l:"NHS Healthy Start"},
+{k:["pregnancy"],t:"Sure Start Maternity Grant",o:"DWP (GOV.UK)",d:"A one-off £500 payment towards the costs of a new baby, usually for your first child (or if you are having twins or more), if you receive certain benefits such as Universal Credit or the guarantee part of Pension Credit. Claim from 11 weeks before the due date until 6 months after the birth.",u:"https://www.gov.uk/sure-start-maternity-grant",l:"GOV.UK, Sure Start Maternity Grant"},
+{k:["pregnancy","children","family"],t:"Family Hubs",o:"Lewisham Council",d:"Local centres for families from pregnancy to age 19 (or 25 with special educational needs and disabilities, SEND). Advice from midwives, health visitors and SEND advisers, plus help with money, returning to work, baby development and youth activities. Hubs across the borough, including Bellingham, Deptford, Downham, Honor Oak, Ladywell and Kaleidoscope. Email family.hubs@lewisham.gov.uk to find your nearest hub.",u:"https://lewisham.gov.uk/myservices/children-and-families-information-service/family-hubs/lewisham-family-hubs",l:"Lewisham Council, Family Hubs"},
+{k:["children","family","debt"],t:"Free money advice in Family Hubs",o:"Lewisham Council / Mayor of London / Citizens Advice",d:"Free, independent advice inside Lewisham Family Hubs on benefits, debt, housing, childcare and work, for families on a low income. Ask at your nearest Family Hub or call Community Connections Lewisham (0330 058 3464) to find out when advisers are there.",u:"https://lewisham.gov.uk/myservices/children-and-families-information-service/family-hubs/lewisham-family-hubs",l:"Lewisham Council, Family Hubs",c:"That the programme is still running."},
+{k:["family","children"],t:"Family Thrive (intensive family support)",o:"Lewisham Council",d:"Early help for families with children aged 0 to 18 (or 25 with SEND) facing several difficulties at once. A Family Practitioner works with you for up to 26 weeks to stop small problems becoming bigger. Referrals through the Family First Contact Point: 020 8314 6660 or MashAgency@lewisham.gov.uk.",u:"https://lewisham.gov.uk/myservices/children-and-families-information-service/family-hubs/family-thrive",l:"Lewisham Council, Family Thrive"},
+{k:["children","food"],t:"HAF programme (holiday activities and food)",o:"Lewisham Council",d:"Free activities and a meal for eligible children (usually those getting benefits-related free school meals) during the Easter, summer and Christmas holidays, including places for children with SEND. Ask your school or search 'HAF' on the Council website to find out how to book.",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Cost of living",c:"The Council's HAF page has moved (the old link no longer works)."},
+{k:["children","crisis","careleaver"],t:"Bank of Things (essentials for young people)",o:"Lewisham Council / Young Advisors",d:"A free drop-in for young people aged 11 to 25 in Lewisham facing hardship. Everyday essentials like toiletries and sanitary products, and school equipment (stationery, calculators, maths sets). No food. Unit 19, Lewisham Shopping Centre. Term-time opening: Mondays and Wednesdays, 4pm-7pm.",u:"https://lewisham.gov.uk/articles/news/the-bank-of-things-is-now-open",l:"Lewisham Council news, Bank of Things",c:"Current opening hours before you visit."},
+{k:["food"],t:"Lewisham Foodbank (Trussell)",o:"Trussell (charity)",d:"Free emergency food parcels. Most Trussell food banks need a referral (a food bank voucher) from a professional such as Citizens Advice, a GP, a school or a support worker. Check their website for how to get a referral and what to bring.",u:"https://lewisham.foodbank.org.uk/",l:"lewisham.foodbank.org.uk"},
+{k:["food","nrpf","crisis"],t:"AFRIL (Action for Refugees in Lewisham)",o:"AFRIL (charity)",d:"Food bank, community allotment, supermarket vouchers, a supplementary school and casework (immigration, housing, welfare) for asylum seekers, refused asylum seekers and recently granted refugees. Call 020 8297 4111 or email info@afril.org.uk.",u:"https://www.afril.org.uk/",l:"afril.org.uk",c:"Phone number."},
+{k:["food","savings"],t:"Community meals and social supermarkets",o:"Lewisham Council and local partners",d:"Community meals offer a free or low-cost meal and company. Social supermarkets and pantries charge a small membership fee (often around £4-5) for a weekly shop worth much more. Examples include Downham Gleaning Pantry (rescued surplus food) and We Care Foodbank's social pantry at Kath's Place, Deptford. Call Community Connections Lewisham on 0330 058 3464 to find the best option near you.",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Cost of living",c:"Prices and opening times."},
+{k:["food","savings"],t:"Community stores on Council estates",o:"Lewisham Council-supported",d:"Evelyn Community Store, Feed the Hill and Sydenham Community Supermarket are low-cost community shops. Members pay a small fee (usually around £4-5) for a weekly shop of fresh groceries, which can save up to about £30 compared with a normal supermarket.",u:"https://lewisham.gov.uk/myservices/housing/have-your-say-on-your-services/volunteering-and-community-stores",l:"Lewisham Council, Community stores",c:"Prices and who can join."},
+{k:["food"],t:"St Peter's Community Table",o:"St Peter's Church",d:"Food support and a community space: community meals, advice services, volunteering and company, alongside emergency food.",u:"https://lewisham.gov.uk/articles/news/world-food-day",l:"Lewisham Council news, World Food Day",c:"Address and opening times (the link is a news article)."},
+{k:["food","crisis"],t:"Lewisham Donation Hub",o:"Volunteer-run charity",d:"Essential items (food, clothing, household goods) for anyone facing hardship, with no referral needed. Run almost entirely by volunteers. Check opening times before visiting.",u:"https://lewisham.gov.uk/articles/news/mayor-of-lewisham-launches-winter-charity-appeal-for-lewisham-donation-hub",l:"Lewisham Council news, Donation Hub",c:"Address and opening times (the link is a news article)."},
+{k:["adult","crisis","debt","family"],t:"Local advice drop-ins (cost of living)",o:"Lewisham Council and partners",d:"Face-to-face help with benefits, debt, housing and budgeting in community venues, mostly without an appointment. Venues have included: Deptford Family Hub (Tue 9am-3pm), 999 Club SE8 (Wed 10am-2pm), St John the Baptist Church SE6 (Wed 12pm-2pm), Waldron Health Centre SE14 (2nd and 4th Mon 2pm-5pm), Perry Rise Baptist Church SE23 (Thu 12pm-2pm), Christchurch URC SE6 (1st and 3rd Mon 2pm-4pm), All Saints Hatcham SE14 (Wed 10am-3pm), King's Church Catford SE6 (2nd Thu 10am-12pm), South Lewisham Health Centre (2nd Thu 2pm-5pm).",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Cost of living",c:"Times change often: check the Council page before going. South Lewisham Health Centre is in SE6, not SE8."},
+{k:["careleaver"],t:"Care leavers support",o:"Lewisham Council",d:"If you have been in care and are under 25, you may be entitled to: Council Tax exemption until 25; a setting-up home grant for your first home; help with driving lessons; and a bursary if you start an apprenticeship. Your personal adviser can explain what you can get. Contact the Care Leavers team at Lewisham Council.",u:"https://lewisham.gov.uk/myservices/children-and-young-people-service/children-in-care",l:"Lewisham Council, Children in care and care leavers",c:"Amounts. The national minimum setting-up home allowance has been £3,000 since April 2024 (the old figure on this site was £2,000), and the national care leaver apprenticeship bursary has been £3,000 since August 2023 (the old figure here was £1,000)."},
+{k:["adult"],t:"Universal Credit",o:"DWP (GOV.UK)",d:"The main benefit for working-age people on a low income, in or out of work. From April 2026, the monthly standard allowance for a single person is £338.58 (under 25) or £424.90 (25 or over). Extra amounts may be added for children, housing, caring or a health condition (the health element was reduced for new claims from April 2026). Apply online on GOV.UK.",u:"https://www.gov.uk/universal-credit",l:"GOV.UK, Universal Credit",c:"2026-27 amounts on GOV.UK."},
+{k:["adult","disability"],t:"Personal Independence Payment (PIP)",o:"DWP (GOV.UK)",d:"For people aged 16 to State Pension age with a long-term disability or health condition. Two parts: daily living and mobility. 2026-27 weekly rates range from £30.30 (standard mobility) to £194.60 (enhanced rate of both parts). Based on how your condition affects you, not on your income or savings. Start a claim by calling 0800 917 2222.",u:"https://www.gov.uk/pip",l:"GOV.UK, PIP"},
+{k:["senior","disability"],t:"Attendance Allowance",o:"DWP (GOV.UK)",d:"For people over State Pension age with a disability or illness who need help with personal care or supervision. It is not means-tested (your income and savings do not count) and it can open the door to extra Pension Credit, Housing Benefit or Council Tax Reduction.",u:"https://www.gov.uk/attendance-allowance",l:"GOV.UK, Attendance Allowance"},
+{k:["senior","debt"],t:"Pension Credit",o:"DWP (GOV.UK)",d:"Extra money for people over State Pension age on a low income. Many eligible people do not claim it. It can also unlock other help, such as the Warm Home Discount, help with housing costs, Council Tax Reduction and a free TV licence if you are 75 or over. Check on GOV.UK or call the Pension Credit claim line on 0800 99 1234.",u:"https://www.gov.uk/pension-credit",l:"GOV.UK, Pension Credit"},
+{k:["adult"],t:"Unpaid wages and work rights",o:"Acas / Citizens Advice",d:"If your employer has not paid you, you can get free, confidential advice. Acas explains your rights and can help resolve the dispute: call 0300 123 1100 (Mon-Fri, 8am-6pm). Citizens Advice can also help with work problems. If you are a migrant worker, the Work Rights Centre specialises in unpaid wages and exploitation.",u:"https://www.acas.org.uk/",l:"acas.org.uk",c:"Work Rights Centre contact details."},
+{k:["disability"],t:"Freedom Pass for disabled people (free travel)",o:"Lewisham Council / London Councils",d:"Free travel on most public transport in London for residents with an eligible disability (for example blind or partially sighted, profoundly deaf, a substantial mobility difficulty or a learning disability). Apply through your My Lewisham account with proof of identity, proof of your Lewisham address, proof of disability (for example a PIP or DLA letter, or a medical letter) and a passport-style photo.",u:"https://lewisham.gov.uk/myservices/roads-and-transport/publictransport/transportforpeoplewithdisability/apply-for-a-freedom-pass-for-disabled-people",l:"Lewisham Council, Freedom Pass (disability)",c:"Replacement pass fee (the Council page says a replacement must be paid for; Freedom Pass helpline 0300 330 1433)."},
+{k:["disability","housing","senior"],t:"Disabled Facilities Grant and home adaptations",o:"Lewisham Council",d:"A grant of up to £30,000 to adapt your home if you are disabled, for major works like a walk-in shower, stairlift or ramp. You first need an assessment from Lewisham Adult Social Care to confirm the work is needed. If you rent from the Council or a housing association and are at risk of falls, minor adaptations (grab rails, lever taps) can often be fitted quickly without a full assessment.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/myhome/help-at-home/changes-to-your-home-to-help-you-live-independently--adaptations",l:"Lewisham Council, Home adaptations"},
+{k:["disability","housing","senior"],t:"Extra care housing and independent living",o:"Lewisham Council and partners",d:"Supported housing for older people and adults with disabilities. Extra care offers self-contained flats with care staff on site 24/7. Independent (sheltered) living offers flats with a scheme manager and a 24-hour emergency alarm. You need a social care assessment for extra care. Costs include rent, service charges and support fees, but you may qualify for Housing Benefit or other help.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/if-you-cannot-live-at-home/sheltered-and-extra-care-housing",l:"Lewisham Council, Sheltered and extra care housing"},
+{k:["disability","adult"],t:"Free disabled resident parking permit",o:"Lewisham Council",d:"If you have a Lewisham-issued Blue Badge, you can apply for a free Disabled Resident Parking Permit (e-permit, valid 12 months). In a Controlled Parking Zone you can also ask for 10 free one-hour visitor e-permits. Apply or renew online with your Blue Badge (front and back), vehicle registration and insurance certificate.",u:"https://lewisham.gov.uk/myservices",l:"Lewisham Council, My services (search 'disabled resident permit')",c:"The Council's permit page has moved (the old link no longer works)."},
+{k:["carer"],t:"Carer's assessment",o:"Lewisham Adult Social Care",d:"If you look after a family member, friend or neighbour without being paid, you have a legal right to a carer's assessment. It is a conversation about how caring affects your health, work and wellbeing, and what could help (breaks, equipment, money advice, support groups). Contact Adult Social Care on 020 8314 7777 or gateway@lewisham.gov.uk. If the person you care for is in hospital, ask the staff to refer you.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-when-leaving-hospital/support-for-carers-during-hospital-discharge",l:"Lewisham Council, Support for carers"},
+{k:["carer"],t:"Carer's Allowance",o:"DWP (GOV.UK)",d:"A weekly payment if you care for someone for at least 35 hours a week and they receive certain disability benefits (such as PIP daily living, Attendance Allowance or DLA middle or high care rate). There is a weekly earnings limit if you also work. Check the current rate and earnings limit on GOV.UK before claiming, as it can affect the benefits of the person you care for.",u:"https://www.gov.uk/carers-allowance",l:"GOV.UK, Carer's Allowance"},
+{k:["carer"],t:"Imago (support for unpaid carers)",o:"Imago (charity)",d:"Emotional and practical support for unpaid carers in Lewisham: individual support plans, information and advice, and online and in-person carer groups.",u:"https://www.imago.community/",l:"imago.community",c:"That Imago still runs the Lewisham carers service, and its phone number (0300 011 1965 on the old version)."},
+{k:["carer"],t:"Lewisham Carers' Forum",o:"Lewisham Council",d:"A forum for unpaid carers to meet others, share experiences and have a say in Council decisions. Meets every other month at the Civic Suite, Catford, or online. Email proudtocare@lewisham.gov.uk to join.",u:"https://lewisham.gov.uk/myservices/socialcare/carers/benefits-and-allowances-for-carers",l:"Lewisham Council, Carers",c:"Meeting dates."},
+{k:["mental","adult"],t:"Lewisham Talking Therapies",o:"NHS",d:"Free NHS talking therapies for anxiety, depression, stress and low mood: guided self-help, counselling and CBT. You can refer yourself online, without going through your GP.",u:"https://www.lewishamtalkingtherapies.nhs.uk/",l:"Lewisham Talking Therapies"},
+{k:["mental","adult"],t:"Lewisham Wellbeing Hub",o:"Lewisham Council / partners",d:"Information, signposting and community support for adults (18+) about mental health and wellbeing. A good first step if you are not sure where to go.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-with-living-at-home/health-and-advice-support",l:"Lewisham Council, Health and advice",c:"Name and contact details of the service."},
+{k:["mental","adult"],t:"Local Mind",o:"Mind (charity)",d:"Mind's local branch offers advocacy, peer support groups and wellbeing courses for people living with mental health problems. Use Mind's 'local Minds' search to find the branch covering Lewisham.",u:"https://www.mind.org.uk/about-us/local-minds/",l:"Mind, Find your local Mind",c:"Name of the local branch (possibly Bromley, Lewisham & Greenwich Mind)."},
+{k:["mental","children"],t:"Childline and Kooth (for young people)",o:"NSPCC / Kooth",d:"Childline: free, confidential help for anyone under 19, any time. Call 0800 1111 or chat online. Kooth: free, anonymous online counselling for young people, without a referral, where it is offered in your area.",u:"https://www.childline.org.uk/",l:"childline.org.uk",c:"Whether Kooth is offered in Lewisham."},
+{k:["mental","children"],t:"CAMHS (Child and Adolescent Mental Health Services)",o:"NHS / SLaM",d:"Specialist mental health services for children and young people up to 18 with more complex or long-lasting difficulties. Referral is usually through your child's GP or school.",u:"https://lewisham.gov.uk/myservices/children-and-young-people-service/mental-health-and-emotional-wellbeing-for-children--young-people-and-families",l:"Lewisham Council, Children's mental health"},
+{k:["abuse","crisis"],t:"Domestic abuse: getting help",o:"Refuge / GOV.UK",d:"If you are in immediate danger, call 999. If you cannot speak, call 999, then press 55 when asked. The free National Domestic Abuse Helpline (run by Refuge) is open 24/7 on 0808 2000 247, with live chat on its website. Help is also available for men and for LGBT+ people. You can also ask the Lewisham Crisis and Resilience Fund for help if you are fleeing abuse.",u:"https://www.gov.uk/guidance/domestic-abuse-how-to-get-help",l:"GOV.UK, Domestic abuse: how to get help"},
+{k:["senior"],t:"Freedom Pass for older people (free travel)",o:"Lewisham Council / London Councils",d:"Free travel on most London public transport (bus, Tube, Overground, DLR, trams) from State Pension age. Valid from 9am on weekdays (9.30am on some rail services) and all day at weekends and on bank holidays. Apply online. If you are 60 or over but not yet at pension age, you can apply for a 60+ London Oyster photocard.",u:"https://lewisham.gov.uk/myservices/roads-and-transport/publictransport/freedom-pass-for-older-people",l:"Lewisham Council, Freedom Pass"},
+{k:["senior","disability"],t:"Linkline telecare (24/7 alarm)",o:"Lewisham Council",d:"A 24-hour emergency alarm for older or vulnerable people living alone. Press a pendant to talk to trained staff who can contact family or emergency services, or send someone to check on you. Extra sensors are available (falls, smoke, gas, medication reminders). There is a small weekly charge, with financial help available. Call 020 8314 3141 or email linkline@lewisham.gov.uk.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-with-living-at-home/assistive-technology-and-telecare",l:"Lewisham Council, Linkline"},
+{k:["senior"],t:"Age UK Lewisham and Southwark",o:"Age UK (charity)",d:"Support for people aged 50 and over: free information and advice (benefits, housing, debt, care), a Healthy Living Centre (exercise classes, social events, meals, digital skills), befriending (phone or in-person) and a handyperson service. Call 020 7358 4077 or email info@ageuklands.org.uk.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-with-living-at-home/age-uk",l:"Lewisham Council, Age UK"},
+{k:["senior"],t:"Lewisham Community Falls Service",o:"NHS",d:"For people aged 65 and over in Lewisham who have fallen or are worried about falling. The team checks your balance, strength and medicines, and can provide equipment, exercises or a home safety plan. You can refer yourself: call 020 3049 4493 (Mon-Fri 9am-4pm) or email lg.lewishamfallsservice@nhs.net.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-with-living-at-home/health-and-advice-support",l:"Lewisham Council, Health and advice support",c:"The Council's falls prevention page has moved (the old link no longer works)."},
+{k:["nrpf","crisis"],t:"Support if you have No Recourse to Public Funds (NRPF)",o:"Lewisham Council",d:"If you have NRPF on your visa or immigration status, you usually cannot claim mainstream benefits. But the Council may still help families with children who are destitute, and adults with care needs. Contact the Family First Contact Point (families) on 020 8314 6660 or Adult Social Care on 020 8314 7777 for an assessment. Local charities such as AFRIL and the Lewisham Refugee and Migrant Network also offer food, advice and immigration support.",u:"https://lewisham.gov.uk/myservices/housing/no-recourse-to-public-funds",l:"Lewisham Council, NRPF"},
+{k:["adult","senior","disability","debt"],t:"Warm Home Discount (£150 off electricity)",o:"GOV.UK / energy suppliers",d:"A one-off £150 discount on your electricity bill each winter for eligible households, including people on the guarantee part of Pension Credit and many people on means-tested benefits. Most people get it automatically. Contact your energy supplier if you think you qualify but did not receive it.",u:"https://www.gov.uk/the-warm-home-discount-scheme",l:"GOV.UK, Warm Home Discount"},
+{k:["adult","senior","disability","debt"],t:"SELCE (free energy advice)",o:"South East London Community Energy",d:"Free, independent energy advice for Lewisham residents, especially people with long-term health conditions or worries about their bills: energy saving, tariffs, debt and dealing with suppliers. A partner recommended by the Council.",u:"https://lewisham.gov.uk/myservices/environment/climate-emergency/our-commitment/help-with-energy-bills",l:"Lewisham Council, Help with energy bills"},
+{k:["savings","disability","adult"],t:"Be Active leisure discounts",o:"Lewisham Council",d:"Discounts at Lewisham leisure centres for residents aged 16+. If you receive certain benefits (Council Tax Reduction, Housing Benefit, Universal Credit, Income Support, JSA, ESA or tax credits), you get free casual membership and 25% off most activities. If you have a disability (Blue Badge, Disability Freedom Pass, DLA, Attendance Allowance or PIP), you get free swimming, gym and athletics track. Full-time students living or studying in Lewisham also qualify. Unlimited membership is available from about £5 a week. Register at any centre.",u:"https://lewisham.gov.uk/inmyarea/sport/be-active-discounts/types-of-be-active-membership",l:"Lewisham Council, Be Active",c:"Current Unlimited membership price."},
+{k:["savings","carer"],t:"Be Active for carers",o:"Lewisham Council",d:"If you care (paid or unpaid) for a disabled adult who lives in Lewisham, or a disabled child who is a library member, you can join Be Active. You need a letter from the person you care for (or your care agency) naming you. Your discount follows the disabled person's eligibility. Register at any leisure centre (Downham has a separate registration).",u:"https://lewisham.gov.uk/inmyarea/sport/be-active-discounts/types-of-be-active-membership",l:"Lewisham Council, Be Active"},
+{k:["savings"],t:"Lewisham Local Card (local shop discounts)",o:"Lewisham Local (charity)",d:"A discount card for offers at hundreds of independent businesses in Lewisham. Free if you volunteer in the borough; otherwise a small yearly fee that goes to local charities. Not a Council scheme.",u:"https://www.lewishamlocal.com/card/",l:"Lewisham Local, Card",c:"Current price and number of shops."},
+{k:["savings","adult"],t:"Blackwall and Silvertown tunnels: 50% discount",o:"Transport for London (TfL)",d:"If you live in an eligible east or south-east London borough (including Lewisham) and receive certain benefits, you can register for a 50% discount on the Blackwall and Silvertown tunnel charges. You must register with TfL in advance and use Auto Pay.",u:"https://tfl.gov.uk/east-london-discount",l:"TfL, Low-income resident discount",c:"Exact list of benefits, end date, and the link (TfL's page could not be opened during the check)."},
+{k:["savings","food","apps"],ty:"biz",t:"Too Good To Go (cheap surplus food)",o:"Too Good To Go (company)",d:"An app to buy 'surprise bags' of unsold food from local bakeries, cafés and supermarkets at a reduced price (often around £3-5). What is available depends on where you are and the time of day.",u:"https://www.toogoodtogo.com/en-gb",l:"toogoodtogo.com"},
+{k:["savings"],ty:"biz",t:"Lewisham Shopping Centre PLUS+ rewards",o:"Lewisham Shopping Centre (company)",d:"A free loyalty programme with offers from shops in the centre, competitions and a birthday reward. A commercial scheme, not a benefit.",u:"https://www.lewishamshopping.co.uk/en/plus",l:"Lewisham Shopping, PLUS+"},
+{k:["pregnancy","children","apps"],t:"EasyPeasy (parenting app)",o:"EasyPeasy, funded by Lewisham Council",d:"Free app for parents of children aged 0 to 5 in Lewisham: play ideas and advice on sleep, food, language and wellbeing. Search 'EasyPeasy' in your app store and use your Lewisham postcode to unlock free access.",u:"https://www.easypeasyapp.com/",l:"easypeasyapp.com",c:"That Lewisham still funds free access."},
+{k:["apps","adult","senior","carer","disability","children"],t:"NHS App",o:"NHS",d:"The official NHS app. Book and manage GP appointments, order repeat prescriptions, see your health record and check your vaccinations. Carers can use 'linked profiles' to manage things for the person they care for (with their consent). Download it from your app store and prove your identity with photo ID.",u:"https://www.nhs.uk/nhs-app/",l:"NHS, NHS App"},
+{k:["apps"],t:"Love Clean Streets (report street problems)",o:"Lewisham Council",d:"Report street problems to the Council (graffiti, fly-tipping, blocked drains, potholes, broken street lights) by sending a photo with its location. Search 'Love Clean Streets' in your app store.",u:"https://lewisham.gov.uk/myservices",l:"Lewisham Council, My services",c:"The Council's 'report a street problem' page has moved (the old link no longer works)."},
+{k:["apps","counciltax","housing"],t:"My Lewisham account (Council services online)",o:"Lewisham Council",d:"Not a separate app, but the Council website works well on a phone. With a My Lewisham account you can manage your Council Tax and benefits, report problems and apply for services. Add it to your phone's home screen for quick access.",u:"https://lewisham.gov.uk/myservices",l:"Lewisham Council, My services"}
+];
+
+var LANG="en";
+function t(k){return (I18N[LANG]&&I18N[LANG][k]!=null&&I18N[LANG][k]!=="")?I18N[LANG][k]:I18N.en[k]}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+/* Turn phone numbers and e-mail addresses in a description into links you can tap */
+function linkify(s){
+  return esc(s)
+   .replace(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g,function(m){return '<a href="mailto:'+m+'">'+m+'</a>'})
+   .replace(/\b0\d{2,4}(?: \d{3,4}){1,2}\b/g,function(m){return '<a href="tel:'+m.replace(/ /g,"")+'">'+m+'</a>'})
+   .replace(/\b(111|999|116 123)\b(?![^<]*<\/a>)/g,function(m){return '<a href="tel:'+m.replace(/ /g,"")+'">'+m+'</a>'});
+}
+function kind(a){if(a.ty==="biz")return "commercial";var h=a.u.replace(/^https?:\/\//,"").split("/")[0];return /(\.gov\.uk|\.nhs\.uk|betteroff\.org\.uk)$/.test(h)?"official":"community"}
+
+var opts=document.getElementById("opts");
+opts.innerHTML=CATS.map(function(c){return '<label class="opt"><input type="checkbox" value="'+c+'"><span data-i18n="'+c+'"></span></label>'}).join("");
+
+function selected(){return [].slice.call(document.querySelectorAll("#opts input:checked")).map(function(e){return e.value})}
+
+function card(a,sel){
+  var kd=kind(a);
+  var b='<div class="badges"><span class="badge '+(kd==="official"?"b-off":"b-com")+'">'+t(kd)+'</span>'+(a.c?'<span class="badge b-chk">'+t("toCheck")+'</span>':'')+'</div>';
+  return '<article class="card">'+b+'<h3>'+esc(a.t)+'</h3><div class="org">'+esc(a.o)+'</div><p lang="en">'+linkify(a.d)+'</p>'+
+    (a.c?'<p class="chk" lang="en"><strong>'+esc(t("checkLabel"))+'</strong> '+esc(a.c)+'</p>':'')+
+    '<p class="src"><a href="'+esc(a.u)+'" target="_blank" rel="noopener">'+esc(t("source"))+': '+esc(a.l)+'<span class="sr" style="position:absolute;left:-9999px"> (opens in a new tab)</span></a></p></article>';
+}
+
+function render(){
+  var sel=selected();
+  document.querySelectorAll("label.opt").forEach(function(l){l.classList.toggle("on",l.querySelector("input").checked)});
+  document.getElementById("btn-clear").disabled=!sel.length;
+  var cnt=document.getElementById("results"),out=document.getElementById("out");
+  if(!sel.length){
+    cnt.textContent=t("prompt");
+    out.innerHTML=A.filter(function(a){return a.start}).map(card).join("");
+    return;
   }
-};
+  var list=A.map(function(a,i){return {a:a,i:i,n:a.k.filter(function(x){return sel.indexOf(x)>-1}).length}})
+    .filter(function(x){return x.n>0})
+    .sort(function(x,y){return (y.n-x.n)||(x.i-y.i)});
+  cnt.textContent=list.length+" "+(list.length===1?t("one"):t("many"));
+  out.innerHTML=list.map(function(x){return card(x.a,sel)}).join("");
+}
 
-var currentLang = 'en';
-function t(key) { return I18N[currentLang][key] || I18N['en'][key]; }
-
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-  document.getElementById('btn-' + lang).classList.add('active');
-  
-  document.getElementById('main-title').textContent = t('title');
-  document.getElementById('main-sub').textContent = t('subtitle');
-  document.getElementById('legend-situation').textContent = t('situation');
-  document.getElementById('urg-title').textContent = '🚨 ' + t('emergency');
-  
-  document.getElementById('urg-999').textContent = t('urg999');
-  document.getElementById('urg-111').textContent = t('urg111');
-  document.getElementById('urg-101').textContent = t('urg101');
-  document.getElementById('urg-council').textContent = t('urgCouncil');
-  document.getElementById('urg-homeless').textContent = t('urgHomeless');
-  document.getElementById('urg-citizens').textContent = t('urgCitizens');
-  document.getElementById('urg-connections').textContent = t('urgConnections');
-  document.getElementById('urg-repairs').textContent = t('urgRepairs');
-  
-  document.querySelectorAll('[data-i18n]').forEach(function(el) {
-    el.textContent = t(el.getAttribute('data-i18n'));
-  });
-  
-  document.getElementById('footer-disclaimer').textContent = t('disclaimer');
-  document.getElementById('footer-info').textContent = t('footerInfo');
-  document.getElementById('footer-advice').textContent = t('footerAdvice');
-  document.getElementById('footer-copy').textContent = t('footerCopy');
-  document.getElementById('footer-version').textContent = t('footerVersion');
-  
+function setLang(l){
+  if(!I18N[l])l="en";
+  LANG=l;
+  document.documentElement.lang=l;
+  document.title=t("title");
+  document.querySelectorAll(".lang-btn").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-lang")===l?"true":"false")});
+  document.getElementById("main-title").textContent=t("title");
+  document.getElementById("main-sub").textContent=t("subtitle");
+  document.getElementById("legend-situation").textContent=t("situation");
+  document.getElementById("urg-title").textContent=t("emergency");
+  document.getElementById("skip").textContent=t("skip");
+  document.getElementById("btn-clear").textContent=t("clear");
+  document.getElementById("btn-print").textContent=t("print");
+  document.querySelectorAll("[data-i18n]").forEach(function(el){el.textContent=t(el.getAttribute("data-i18n"))});
+  var n=document.getElementById("lang-note");n.textContent=I18N[l].langNote;n.hidden=!I18N[l].langNote;
+  try{localStorage.setItem("lsf-lang",l)}catch(e){}
   render();
 }
 
-var A=[
-{k:["adult","children","senior","disability","carer","crisis","housing","food"],ok:1,t:"BetterOff Lewisham (Benefits Calculator)",o:"Lewisham Council",d:"Free online tool to check which benefits and grants you can claim, and get help applying. It can also help with job searches, appealing benefit decisions, and budgeting. Available in over 130 languages. You can share your account securely with an advisor or friend if you need help using it. Start at lewisham.betteroff.org.uk. You need to create an account first.",u:"https://lewisham.betteroff.org.uk",l:"Lewisham Council, BetterOff"},
-{k:["urgent","adult","children"],ok:1,t:"University Hospital Lewisham – Emergency Department (A&E)",o:"Lewisham and Greenwich NHS Trust",d:"24/7 emergency department for serious injuries and life-threatening emergencies. For all ages. Address: Lewisham High Street, London, SE13 6LH. Do not use A&E for minor problems; call NHS 111 first if unsure.",u:"https://www.nhs.uk/services/hospital/university-hospital-lewisham/X1335/departments/SRV0001/accident-and-emergency-services",l:"NHS, A&E Services"},
-{k:["urgent","children"],ok:1,t:"Children's Emergency Department (Lewisham)",o:"Lewisham and Greenwich NHS Trust",d:"Separate 24/7 emergency department dedicated to children under 16. Located opposite main reception (Yellow Zone) at University Hospital Lewisham. Reception: 020 8333 3138. Address: Lewisham High Street, SE13 6LH.",u:"https://www.lewishamandgreenwich.nhs.uk/service-detail/service/childrens-emergency-department-lewisham-59/",l:"Lewisham and Greenwich NHS Trust, Children's A&E"},
-{k:["urgent","adult"],ok:1,t:"Same Day Emergency Care (SDEC) – Lewisham Hospital",o:"Lewisham and Greenwich NHS Trust",d:"Alternative to A&E for certain urgent conditions, if referred by a healthcare professional or NHS 111. Located next to the main hospital building, with its own entrance. Open Mon-Fri 8am-8pm, Sat-Sun 8am-6pm. Outside these hours, you will be directed to the Emergency Department. Tel: 020 8333 3000 ext. 33302.",u:"https://www.lewishamandgreenwich.nhs.uk/lewisham-sdec",l:"Lewisham and Greenwich NHS Trust, SDEC"},
-{k:["urgent","adult","children"],ok:1,t:"Urgent Dental Care",o:"NHS / Local dentists",d:"For sudden dental problems (pain, bleeding, cracked tooth), contact your regular NHS dentist first; they may offer an urgent appointment. If you don't have a dentist or it's out of hours, call NHS 111 for advice and referral to an urgent dental service. Do not go to A&E for dental problems.",u:"https://www.nhs.uk/services/dentist/deptford-dental-practice/V000463/appointments",l:"NHS, Urgent Dental Care"},
-{k:["urgent","mental","adult"],ok:1,t:"Mental Health Crisis – SLaM Line (24/7)",o:"South London and Maudsley NHS",d:"For urgent mental health support that is not a life-threatening emergency. Call 0800 731 2864 (option 1). Available 24 hours a day, 7 days a week. If you or someone else is at immediate risk of harm, call 999 or go to A&E at Lewisham Hospital.",u:"https://lewisham.gov.uk/myservices/socialcare/health/get-help-with-mental-health",l:"Lewisham Council, Mental Health Crisis"},
-{k:["urgent","mental","children"],ok:1,t:"Lewisham Child and Adolescent Crisis Service",o:"South London and Maudsley NHS",d:"For children and young people up to 18 in mental health crisis. Based at University Hospital Lewisham A&E. Also manages duty calls for urgent referrals (Mon-Fri, 9am-5pm) via Kaleidoscope: 020 3228 1000. Can sometimes offer same-day appointments to avoid A&E.",u:"https://slam.nhs.uk/service-detail/service/lewisham-child-and-adolescent-crisis-service-198",l:"SLaM, Child and Adolescent Crisis Service"},
-{k:["crisis"],ok:1,t:"Crisis and Resilience Fund – Crisis Payments",o:"Lewisham Council",d:"Emergency cash for Lewisham residents facing an immediate, unexpected crisis (e.g. fire, flood, essential appliance breakdown, health emergency, fleeing domestic abuse). Not for ongoing low income. Maximum amounts: Food £40/adult or £20/child per week; Hygiene £30/household per week; Energy £120/household (£70 single); Water £60; Internet £35; Clothing up to £120; Transport up to £200; One essential furniture/appliance item. The online application system is being rolled out; contact the Council for current status.",u:"https://lewisham.gov.uk/myservices/benefits/crisis-and-resilience-fund",l:"Lewisham Council, CRF"},
-{k:["housing","adult"],ok:1,t:"Crisis and Resilience Fund – Housing Payments",o:"Lewisham Council",d:"Help with housing costs if you receive Housing Benefit or the housing element of Universal Credit. Can cover rent shortfalls, deposit, advance rent, or moving costs. Discretionary – each application is assessed individually.",u:"https://lewisham.gov.uk/myservices/benefits/crisis-and-resilience-fund",l:"Lewisham Council, CRF"},
-{k:["housing","adult"],ok:1,t:"Discretionary Housing Payment (DHP)",o:"Lewisham Council",d:"Extra financial help if you receive Housing Benefit or the housing element of Universal Credit, but it doesn't cover all your rent. It is discretionary and usually for short-term difficulties. It can help with rent shortfalls, a deposit, or moving costs. You must give a good reason for needing the extra support. Apply by completing the form and uploading your documents. Decisions are sent within one month.",u:"https://lewisham.gov.uk/myservices/benefits/housing-benefit/discretionary-housing-payments",l:"Lewisham Council, DHP"},
-{k:["counciltax","adult"],ok:1,t:"Council Tax Reduction",o:"Lewisham Council",d:"If you have a low income, you can apply for a reduction on your Council Tax bill. Universal Credit does not cover Council Tax, so you must apply separately to Lewisham Council. The Council looks at your income, savings, and household situation.",u:"https://lewisham.gov.uk/myservices/benefits/housing-benefit/apply-for-housing-benefit",l:"Lewisham Council, Council Tax Reduction"},
-{k:["children"],ok:1,t:"Free School Meals",o:"Lewisham Council",d:"If you receive certain benefits (Universal Credit, income-related ESA, Pension Credit guarantee), your child may get free school meals. Two categories from Sept 2026: Targeted (household earnings ≤ £7,400, also attracts Pupil Premium funding for the school) and Expanded (any Universal Credit household, meals only). All primary children Reception–Year 6 also get universal free meals until summer 2028.",u:"https://lewisham.gov.uk/myservices/education/student-pupil-support/free-school-meals-and-extra-support-for-your-child",l:"Lewisham Council, FSM"},
-{k:["children"],ok:1,t:"Child Benefit",o:"HMRC (GOV.UK)",d:"Universal payment for anyone responsible for a child. Worth £27.05/week for the eldest child and £17.90/week for each additional child. Claim via the HMRC app or GOV.UK. Claiming also protects your National Insurance record for your State Pension. Can only be backdated 3 months, so claim as soon as possible after birth or when a child comes to live with you.",u:"https://www.gov.uk/child-benefit",l:"GOV.UK, Child Benefit"},
-{k:["children"],ok:1,t:"Tax-Free Childcare",o:"HMRC (GOV.UK)",d:"For working parents. For every £8 you pay into a childcare account, the government adds £2 (20% top-up). Maximum government support is £500 per child every 3 months (£1,000 if disabled). You must be working and earning at least the equivalent of 16 hours at National Minimum Wage. Cannot be used at the same time as Universal Credit childcare element or childcare vouchers.",u:"https://www.gov.uk/tax-free-childcare",l:"GOV.UK, Tax-Free Childcare"},
-{k:["children"],ok:1,t:"Universal Credit Childcare Element",o:"DWP (via Universal Credit)",d:"If you receive Universal Credit, you can claim back up to 85% of eligible childcare costs. Maximum monthly amounts (April 2025): £1,032 for one child, £1,769 for two or more. You must be in paid work (or have accepted a job offer) to qualify. This cannot be claimed at the same time as Tax-Free Childcare.",u:"https://www.gov.uk/universal-credit/childcare",l:"GOV.UK, Universal Credit childcare"},
-{k:["children","difficulte"],ok:1,t:"Kinship Carer Support",o:"Lewisham Council (Kinship Team)",d:"If you are raising a child who is not your own (e.g. grandchild, niece/nephew), the Kinship Team can provide advice on your rights, financial support where eligible, access to Family Hubs, peer support groups ('Sip & Chat'), and help with education, health and housing issues. Contact the team via the Council website.",u:"https://lewisham.gov.uk/myservices/children-and-young-people-service/looking-after-someone-elses-child",l:"Lewisham Council, Kinship Care"},
-{k:["children","pregnancy","food"],ok:1,t:"Healthy Start (Food & Vitamins)",o:"NHS",d:"Prepaid card for milk, fruit, vegetables and infant formula if you are 10+ weeks pregnant or have a child under 4 and receive certain benefits (e.g. Universal Credit with take-home pay ≤ £408/month). Weekly amounts: £4.25 (pregnancy and child 1-4), £8.50 (baby 0-1). Also gives free vitamins (tablets for pregnancy, drops for children). Apply online or by phone (0300 330 7010).",u:"https://www.healthystart.nhs.uk/",l:"NHS Healthy Start"},
-{k:["children","pregnancy"],ok:1,t:"Sure Start Maternity Grant",o:"GOV.UK (DWP)",d:"One-off £500 payment to help with the costs of a new baby. Usually for your first child (or twins/multiples) if you receive Universal Credit or Pension Credit (guarantee element). Claim within 11 weeks of the due date or 6 months after birth using form SF100, signed by a health professional (midwife/GP).",u:"https://www.gov.uk/sure-start-maternity-grant",l:"GOV.UK, Sure Start Maternity Grant"},
-{k:["children","pregnancy"],ok:1,t:"Family Hubs (Local Support)",o:"Lewisham Council",d:"One-stop shops for families from pregnancy to age 19 (or 25 with SEND). Get advice from midwives, health visitors, and SEND advisors. Help with finances, returning to work, baby development, and youth activities. Locations across the borough (Bellingham, Deptford, Downham, Honor Oak, Ladywell, Kaleidoscope). Email family.hubs@Lewisham.gov.uk for help finding your nearest hub.",u:"https://lewisham.gov.uk/myservices/children-and-families-information-service/family-hubs/lewisham-family-hubs",l:"Lewisham Council, Family Hubs"},
-{k:["children","difficulte"],ok:1,t:"Family Thrive (Intensive Family Support)",o:"Lewisham Council",d:"Targeted early help for families with children 0-18 (or 25 with SEND) facing multiple challenges. A Family Practitioner works with you for up to 26 weeks to prevent small problems becoming bigger. Referrals via the Family First Contact Point: 020 8314 6660 or MashAgency@Lewisham.gov.uk.",u:"https://lewisham.gov.uk/myservices/children-and-families-information-service/family-hubs/family-thrive",l:"Lewisham Council, Family Thrive"},
-{k:["children"],ok:1,t:"HAF Programme (Holiday Activities & Food)",o:"Lewisham Council",d:"Free activities and food for eligible children during school holidays. The programme includes specialist provision for children with SEND (partnered with local special schools). Check the Council's website or ask your school for eligibility and how to book.",u:"https://lewisham.gov.uk/myservices/children-and-young-people/holiday-activities-and-food-programme",l:"Lewisham Council, HAF"},
-{k:["children","difficulte"],ok:1,t:"Family Financial Resilience Partnership",o:"Lewisham Council / GLA / Citizens Advice",d:"Free, independent financial advice available inside Lewisham Family Hubs. Get help with benefit entitlements, debt, housing, childcare and employment. Funded by the Mayor of London to support low-income families. Ask at your nearest Family Hub or call Community Connections Lewisham (0330 058 3464) to find out when advisors are available.",u:"https://lewisham.gov.uk/myservices/children-and-families-information-service/family-hubs/lewisham-family-hubs",l:"Lewisham Council, Family Hubs"},
-{k:["children","crisis"],ok:1,t:"Bank of Things (Young People's Essentials)",o:"Lewisham Council / Young Advisors",d:"A drop-in donation hub for young people aged 11 to 25 in Lewisham facing hardship. Provides everyday essentials like toiletries (deodorant, shampoo, toothpaste, sanitary products) and school equipment (stationery, calculators, maths sets). No food is provided. Located at Unit 19, Lewisham Shopping Centre. Term-time opening: Mondays and Wednesdays 4pm-7pm. Check the Council website for current hours before visiting.",u:"https://lewisham.gov.uk/articles/news/the-bank-of-things-is-now-open",l:"Lewisham Council, Bank of Things"},
-{k:["food"],ok:1,t:"Community Connections Lewisham",o:"Lewisham Council (orientation)",d:"Call 0330 058 3464 (Mon-Fri 9.30am-4pm). The best first step to find the right food bank, community meal, or social supermarket for your situation. They can also link you to other support services.",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Cost of Living"},
-{k:["food"],ok:1,t:"Lewisham Foodbank (Trussell Trust)",o:"Trussell Trust",d:"Free emergency food parcels. Important: most food banks in this network require a referral from a professional (social worker, GP, school, etc.) before you can visit. Check their website for what you need to bring.",u:"https://lewisham.foodbank.org.uk/",l:"Lewisham Foodbank"},
-{k:["food"],ok:1,t:"AFRIL (Action for Refugees in Lewisham)",o:"AFRIL",d:"Food bank and community allotment specifically supporting sanctuary seekers and refugees. They provide healthy food, supermarket vouchers, and integrated casework support (immigration, housing, welfare).",u:"https://www.afril.org.uk/",l:"AFRIL"},
-{k:["food"],ok:1,t:"Downham Gleaning Pantry",o:"Community Pantry",d:"A social supermarket model. For £5 per week, members can do a weekly shop. The project rescues surplus food and emphasises dignity and contribution rather than charity.",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Food Support"},
-{k:["food"],ok:1,t:"Evelyn Community Store / Feed the Hill / Sydenham Community Supermarket",o:"Lewisham Council-supported community stores",d:"Low-cost social supermarkets on Council estates. Members pay a small fee (usually around £4-5) for a weekly shop, saving up to £30 compared to regular supermarkets. Fresh, healthy groceries.",u:"https://lewisham.gov.uk/myservices/housing/have-your-say-on-your-services/volunteering-and-community-stores",l:"Lewisham Council, Community Stores"},
-{k:["food"],ok:1,t:"St Peter's Community Table",o:"St Peter's Church",d:"A combined food support and community space. Offers community meals, advice services, volunteering opportunities, and social connection alongside emergency food provision.",u:"https://lewisham.gov.uk/articles/news/world-food-day",l:"Lewisham Council, World Food Day"},
-{k:["food"],ok:1,t:"Food and Essentials Support",o:"Lewisham Council and partners",d:"Lewisham Council does not run food banks directly but funds and signposts to a network of support. Call Community Connections Lewisham (0330 058 3464) to find the nearest food bank, community meal, or social supermarket. Advice Lewisham (0800 231 5453) can help with benefits, debt, and housing advice.",u:"https://lewisham.gov.uk/myservices/benefits/crisis-and-resilience-fund",l:"Lewisham Council, food support"},
-{k:["food","senior","adult","children"],ok:1,t:"Community Meals & Social Supermarkets",o:"Lewisham Council and local partners",d:"For low-cost or free ready-made meals and discounted food shopping. Community meals offer a space to eat and connect with others (some free, some low-cost). Social supermarkets/pantries charge a small fee (around £4-5 per shop) for a weekly shop worth much more. Examples include We Care Foodbank's social pantry (Kath's Place, Deptford) and Downham Gleaning Pantry. Call Community Connections Lewisham on 0330 058 3464 to find the best option near you.",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Cost of Living"},
-{k:["food","crisis","adult","children"],ok:1,t:"Lewisham Donation Hub",o:"Volunteer-run charity",d:"Provides essential items (food, clothing, household goods) to anyone facing hardship. No referrals and no barriers. Run almost entirely by volunteers. Check their website for current needs and opening times before visiting.",u:"https://lewisham.gov.uk/articles/news/mayor-of-lewisham-launches-winter-charity-appeal-for-lewisham-donation-hub",l:"Lewisham Council, Donation Hub"},
-{k:["careleaver"],ok:1,t:"Care Leavers Support",o:"Lewisham Council",d:"If you have been in care and are under 25, you may be entitled to: Council Tax exemption until 25; a £2,000 setting-up grant for your first home; help with driving lessons; a £1,000 apprenticeship bursary (16–24). Contact the Care Leavers team at Lewisham Council for eligibility and how to apply.",u:"https://lewisham.gov.uk/myservices/social-care-and-support/children/care-leavers",l:"Lewisham Council, Care Leavers"},
-{k:["adult"],ok:1,t:"Universal Credit (Standard Allowance)",o:"DWP (GOV.UK)",d:"Main benefit for low-income adults. Monthly standard allowance from April 2026: £338.58 (under 25) or £424.90 (25+). If you have a health condition that limits your ability to work, an extra 'health element' (LCWRA) may apply, but the rate for new claimants was reduced in April 2026. Apply online via GOV.UK.",u:"https://www.gov.uk/universal-credit",l:"GOV.UK, Universal Credit"},
-{k:["adult","disability"],ok:1,t:"Personal Independence Payment (PIP)",o:"DWP (GOV.UK)",d:"For people aged 16 to State Pension age with a disability or health condition. Two parts: Daily Living and Mobility. 2026-27 rates range from £30.30/week (standard mobility) to £194.60/week (enhanced rates for both parts). Based on how your condition affects you, not your income. Start a claim by calling 0800 917 2222.",u:"https://www.gov.uk/pip",l:"GOV.UK, PIP"},
-{k:["adult"],ok:1,t:"Unpaid Wages (Employment Rights)",o:"Acas / Citizens Advice",d:"If your employer has not paid your wages, you can get free, confidential advice. Acas (the Advisory, Conciliation and Arbitration Service) can explain your rights and help you resolve the dispute. Call the Acas helpline on 0300 123 1100 (Mon-Fri, 8am-6pm). Citizens Advice Lewisham (0800 231 5453) can also help with employment issues, benefits and debt. If you are a migrant worker, the Work Rights Centre (0300 4000 100) specialises in unpaid wages and exploitation.",u:"https://www.acas.org.uk/",l:"Acas, Unpaid Wages"},
-{k:["disability"],ok:1,t:"Freedom Pass (Free Travel)",o:"Lewisham Council / London Councils",d:"Free travel on most public transport in London for residents with a statutory disability (e.g. blind/partially sighted, profoundly deaf, substantial mobility difficulty, learning disability). Apply via your My Lewisham account. You will need: proof of ID, proof of address in Lewisham, proof of disability (e.g. PIP/DLA letter, medical letter), and a passport-style photo. Replacement passes cost £14.35.",u:"https://lewisham.gov.uk/myservices/roads-and-transport/publictransport/transportforpeoplewithdisability/apply-for-a-freedom-pass-for-disabled-people",l:"Lewisham Council, Freedom Pass"},
-{k:["disability","housing"],ok:1,t:"Disabled Facilities Grant (DFG)",o:"Lewisham Council (funded by Government)",d:"Grant of up to £30,000 to adapt your home if you are disabled. Covers major works like walk-in showers, stairlifts, or ramps. You must first have a Care Act needs assessment from Lewisham Adult Social Care to confirm the work is necessary and appropriate. If you are a Council or housing association tenant, minor adaptations (grab rails, lever taps) can be installed quickly without a full assessment if you are at risk of falls.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/myhome/help-at-home/changes-to-your-home-to-help-you-live-independently--adaptations",l:"Lewisham Council, Home Adaptations"},
-{k:["disability","housing"],ok:1,t:"Extra Care Housing & Independent Living",o:"Lewisham Council and partners",d:"Supported housing options for adults with disabilities (and older people). Extra Care offers self-contained flats with 24/7 on-site care staff. Independent Living offers flats with an on-site manager and 24-hour emergency alarms. You need a social care assessment to apply for Extra Care. Costs include rent, service charges, and support fees, but you may qualify for Housing Benefit or Council Tax exemption.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/if-you-cannot-live-at-home/sheltered-and-extra-care-housing",l:"Lewisham Council, Extra Care Housing"},
-{k:["carer"],ok:1,t:"Carer's Assessment (Support for unpaid carers)",o:"Lewisham Adult Social Care",d:"If you provide unpaid care to a family member, friend or neighbour, you have a legal right to a carer's assessment. This is a conversation about how caring affects your health, work and wellbeing, and what support could help you (respite, equipment, financial advice, support groups). Contact Adult Social Care on 020 8314 7777 or gateway@lewisham.gov.uk. If the person you care for is in hospital, ask staff to refer you.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-when-leaving-hospital/support-for-carers-during-hospital-discharge",l:"Lewisham Council, Carers"},
-{k:["carer"],ok:1,t:"Imago (Carers Support Service)",o:"Imago",d:"Local organisation providing emotional and practical support to unpaid carers in Lewisham. Offers individual support plans, information and advice, and regular online and in-person carer support groups. Call 0300 011 1965 to speak to the team.",u:"https://www.imago.community/",l:"Imago, Carers Support"},
-{k:["carer"],ok:1,t:"Carers' Forum",o:"Lewisham Council",d:"A forum for unpaid carers to meet others, share experiences, and influence Council decisions. Meets on the last Tuesday of every other month (Jan, Mar, May, Jul, Sep, Nov) from 1pm to 3pm at the Civic Suite, Catford or online. Email proudtocare@lewisham.gov.uk to join.",u:"https://lewisham.gov.uk/myservices/socialcare/carers/benefits-and-allowances-for-carers",l:"Lewisham Council, Carers' Forum"},
-{k:["mental"],ok:1,t:"NHS 111 (Option 2) – Mental Health Crisis Line",o:"NHS / South London and Maudsley",d:"For anyone experiencing a mental health crisis, or worried about someone else. Call 111 and select option 2 to speak to trained mental health professionals. Available 24 hours a day, 7 days a week. This replaced the old SLaM crisis line in April 2026.",u:"https://www.nhs.uk/nhs-services/mental-health-services/where-to-get-urgent-help-for-mental-health/",l:"NHS, Urgent Mental Health Help"},
-{k:["mental","adult"],ok:1,t:"Lewisham Talking Therapies",o:"NHS",d:"Free NHS psychological therapies for anxiety, depression, stress and low mood. Offers guided self-help, one-to-one counselling, and CBT. You can self-refer or ask your GP to refer you.",u:"https://www.lewishamtalkingtherapies.nhs.uk/",l:"NHS, Lewisham Talking Therapies"},
-{k:["mental","adult"],ok:1,t:"Lewisham Wellbeing Hub",o:"Lewisham Council / Partners",d:"A central resource for adults (18+) offering information, signposting and community support for mental health and wellbeing. A good first step if you are not sure where to go.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-with-living-at-home/health-and-advice-support",l:"Lewisham Council, Health and Advice"},
-{k:["mental","adult"],ok:1,t:"Mind in Lewisham",o:"Mind",d:"Local branch of the mental health charity Mind. Provides advocacy, peer support groups, and mental health education. A good option for ongoing, community-based support.",u:"https://www.mind.org.uk/",l:"Mind, Local Services"},
-{k:["mental","children"],ok:1,t:"Kooth (Online Counselling for Young People)",o:"Kooth",d:"Free, anonymous online mental health service for children and young people. Speak to a counsellor for advice and support without needing a referral. Accessible directly via the Kooth website.",u:"https://www.kooth.com/",l:"Kooth, Free Online Counselling"},
-{k:["mental","children"],ok:1,t:"CAMHS (Child and Adolescent Mental Health Services)",o:"NHS / SLaM",d:"Specialist mental health service for children and young people up to 18 (or 21 for care leavers) with more complex or persistent difficulties. Referral is usually made by your child's GP or school.",u:"https://lewisham.gov.uk/myservices/children-and-young-people-service/mental-health-and-emotional-wellbeing-for-children--young-people-and-families",l:"Lewisham Council, CAMHS"},
-{k:["mental","children"],ok:1,t:"CAMHS Crisis Line (Young People)",o:"NHS / SLaM",d:"Dedicated crisis line for children and young people. Call 020 3228 5980. Available 5pm-11pm Monday to Friday, and 9am-11pm on weekends and bank holidays.",u:"https://lewisham.gov.uk/myservices/young-people/youth-clubs/youth-first-one-to-one-support-service",l:"Lewisham Council, Youth Support"},
-{k:["adult","senior","counciltax"],ok:1,t:"Single Person Discount (25% off Council Tax)",o:"Lewisham Council",d:"If you are the only adult (18+) living in your home as your main residence, you can get a 25% reduction on your Council Tax bill. You cannot claim it for a second home. Certain people are 'disregarded' and don't count towards the adult total (e.g. full-time students, carers, people with severe mental impairment). Apply online via your My Lewisham account. The Council is currently reviewing all single person discounts, so you may receive a review letter.",u:"https://lewisham.gov.uk/myservices/counciltax/reductions/council-tax---apply-for--or-end--a-single-person-discount",l:"Lewisham Council, Single Person Discount"},
-{k:["disability","counciltax"],ok:1,t:"Disability Reduction Scheme (Lower Council Tax Band)",o:"Lewisham Council",d:"If your property has been adapted for a disabled resident (e.g. extra bathroom or kitchen, enough space for a wheelchair, or a room mainly used for their needs), you may qualify for a lower Council Tax band. For example, a Band D property would only pay the Band C rate. You can apply online with your Council Tax account number and GP details. The Council will visit to verify the adaptations.",u:"https://lewisham.gov.uk/myservices/counciltax/reductions/council-tax-for-people-with-a-disability",l:"Lewisham Council, Disability Reduction"},
-{k:["disability","adult","children"],ok:1,t:"Be Active Leisure Discounts",o:"Lewisham Council",d:"Discounts at Lewisham leisure centres for residents 16+. If you receive certain benefits (Council Tax Reduction, Housing Benefit, Universal Credit, Income Support, JSA, ESA, or Tax Credits), you get automatic casual membership and 25% off most activities. If you have a disability (Blue Badge, Disability Freedom Pass, DLA, Attendance Allowance, or PIP), you get free swimming, gym, and athletic track. Students in full-time education (living or studying in Lewisham) also qualify. Register at any centre.",u:"https://lewisham.gov.uk/inmyarea/sport/be-active-discounts/types-of-be-active-membership",l:"Lewisham Council, Be Active"},
-{k:["adult","senior","children"],ok:1,t:"Lewisham Local Card (Local Business Discounts)",o:"Lewisham Local (independent charity)",d:"A discount card giving access to offers at over 500 local independent businesses in Lewisham. It is FREE if you volunteer in the borough. Otherwise, it costs £10 per year (100% goes to local charities). Show your card at any shop with the 'Lewisham Local' sticker. This is not a Council scheme, but a community programme. You can sign up or find volunteering opportunities on their website.",u:"https://www.lewishamlocal.com/card/",l:"Lewisham Local, Card"},
-{k:["nrpf","adult","children","crisis"],ok:1,t:"Support for NRPF (No Recourse to Public Funds)",o:"Lewisham Council",d:"If you have NRPF (e.g. you are an asylum seeker or have limited leave to remain), you generally cannot claim mainstream benefits. However, the Council may still help families who are destitute or adults with care needs. Contact MASH (families) on 020 8314 6660 or Adult Social Care on 020 8314 7777 for an assessment. Local charities like AFRIL and Lewisham Refugee and Migrant Network also offer food, advice, and immigration support.",u:"https://lewisham.gov.uk/myservices/housing/no-recourse-to-public-funds",l:"Lewisham Council, NRPF"},
-{k:["nrpf","adult","crisis"],ok:1,t:"AFRIL (Action for Refugees in Lewisham)",o:"AFRIL",d:"Provides a food bank, supplementary school, and immigration advice for asylum seekers, refused asylum seekers, and recently granted refugees. A key local resource for sanctuary seekers. Call 020 8297 4111 or email info@afril.org.uk.",u:"https://www.afril.org.uk/",l:"Lewisham Council, NRPF resources"},
-{k:["adult","senior","disability"],ok:1,t:"Warm Home Discount (£150 off energy)",o:"GOV.UK / Energy suppliers",d:"A £150 discount on your electricity bill for eligible low-income households or those receiving the Guarantee Credit part of Pension Credit. You don't need to apply directly; your supplier will automatically apply it if you meet the criteria. Contact your supplier if you think you qualify but haven't received it.",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Cost of Living"},
-{k:["adult","senior","disability"],ok:1,t:"SELCE (Energy Advice)",o:"South East London Community Energy",d:"Free, independent energy advice for Lewisham residents, especially those with long-term health conditions or concerns about bills. They can help with energy efficiency, tariffs, and dealing with suppliers. A Council-recommended partner.",u:"https://lewisham.gov.uk/myservices/environment/climate-emergency/our-commitment/help-with-energy-bills",l:"Lewisham Council, Energy Help"},
-{k:["adult","children","crisis"],ok:1,t:"Local Advice Drop-ins (Cost of Living)",o:"Lewisham Council and partners",d:"Get face-to-face help with benefits, debt, housing, and budgeting at various community locations across the borough. No appointment needed for most. Key locations: Deptford Family Hub (Tue 9am-3pm), 999 Club SE8 (Wed 10am-2pm), St John the Baptist Church SE6 (Wed 12pm-2pm), Waldron Health Centre SE14 (2nd & 4th Mon 2pm-5pm), Perry Rise Baptist Church SE23 (Thu 12pm-2pm), Christchurch URC SE6 (1st & 3rd Mon 2pm-4pm), All Saints Hatcham SE14 (Wed 10am-3pm), Anerley Town Hall SE20 (1st Thu 9am-1pm), King's Church Catford SE6 (2nd Thu 10am-12pm), South Lewisham Health Centre SE8 (2nd Thu 2pm-5pm). Check the Council website for the latest times.",u:"https://lewisham.gov.uk/myservices/cost-of-living",l:"Lewisham Council, Cost of Living"},
-{k:["senior"],ok:1,t:"Freedom Pass (Free Travel for Older People)",o:"Lewisham Council / London Councils",d:"Free travel on most London public transport (bus, Tube, Overground, DLR, trams) from State Pension age. Valid weekdays from 9am (9:30am on some rail), and all day weekends/bank holidays. Apply online. If you are 60+ but not yet pension age, apply for a 60+ Oyster card for free travel.",u:"https://lewisham.gov.uk/myservices/roads-and-transport/publictransport/freedom-pass-for-older-people",l:"Lewisham Council, Freedom Pass"},
-{k:["senior"],ok:1,t:"Linkline Telecare (24/7 Alarm)",o:"Lewisham Council",d:"24-hour emergency alarm service for older or vulnerable people living alone. Press a pendant to speak to trained staff who can contact family, emergency services, or send someone to check on you. Extra sensors available (fall detectors, smoke/gas, medication reminders). Small weekly charge, with financial help available. Call 020 8314 3141 or email linkline@lewisham.gov.uk.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-with-living-at-home/assistive-technology-and-telecare",l:"Lewisham Council, Linkline"},
-{k:["senior"],ok:1,t:"Age UK Lewisham and Southwark",o:"Age UK",d:"Local charity supporting people aged 50+. Services include: free Information & Advice (benefits, housing, debt, care choices); Healthy Living Centre (exercise classes, social events, meals, digital skills); Befriending (phone or in-person chats); and Handyperson help for small jobs at home. Call 020 7358 4077 or email info@ageuklands.org.uk.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-with-living-at-home/age-uk",l:"Lewisham Council, Age UK"},
-{k:["senior"],ok:1,t:"Community Connections Lewisham",o:"Age UK / Lewisham Council",d:"Free service for adults 18+ in Lewisham. A single point of contact to help you find local services and activities to improve health, wellbeing, and independence. Help with isolation, safety, digital support, and community transport. Call 0330 0583 464 (Mon-Fri 9:30am-4pm, Thu until 1pm).",u:"https://lewisham.gov.uk/myservices/socialcare/health/socialising",l:"Lewisham Council, Community Connections"},
-{k:["senior"],ok:1,t:"Lewisham Community Falls Service",o:"NHS",d:"For people 65+ in Lewisham who have fallen or feel at risk of falling. The team checks your balance, strength, and medication, and can provide equipment, exercises, or a home safety plan. Self-referral available. Call 020 3049 4493 (Mon-Fri 9am-4pm) or email lg.lewishamfallsservice@nhs.net.",u:"https://lewisham.gov.uk/myservices/socialcare/adult/support-with-living-at-home/regaining-independence/falls-prevention",l:"Lewisham Council, Falls Prevention"},
-{k:["carer","disability","adult"],ok:1,t:"Be Active for Carers",o:"Lewisham Council",d:"If you are an unpaid or professional carer for a disabled adult living in Lewisham, or a disabled child who is a library member, you can sign up to the Be Active scheme. You need a letter from the person you care for (or your care agency) nominating you. Your access depends on the disabled person's eligibility (e.g. free gym/swimming if they have a disability, or 25% off if they receive benefits). Register at any leisure centre (except Downham, which requires separate registration).",u:"https://lewisham.gov.uk/inmyarea/sport/be-active-discounts/types-of-be-active-membership",l:"Lewisham Council, Be Active"},
-{k:["disability","counciltax","adult"],ok:1,t:"Severely Mentally Impaired (SMI) Council Tax Reduction",o:"Lewisham Council",d:"If someone aged 18 or over lives with you and is severely mentally impaired (confirmed by a doctor), you may be entitled to a Council Tax reduction or exemption. The person must be medically certified as SMI and may also need to be eligible for certain benefits (e.g. PIP, DLA, Attendance Allowance). Contact Lewisham Council for an application form.",u:"https://lewisham.gov.uk/myservices/counciltax/council-tax-reductions-and-exemptions/",l:"Lewisham Council, Council Tax Reductions"},
-{k:["disability","adult"],ok:1,t:"Disabled Resident Parking Permit (Free)",o:"Lewisham Council",d:"If you have a Lewisham-issued Blue Badge, you can apply for a free Disabled Resident Parking Permit (e-permit, valid 12 months). If you live in a Controlled Parking Zone (CPZ), you can also request 10 free one-hour visitor parking e-permits. Apply or renew online. You need your Blue Badge (front and back), vehicle registration, and insurance certificate.",u:"https://lewisham.gov.uk/myservices/parking/permits/disabled-resident-permits",l:"Lewisham Council, Disabled Parking"},
-{k:["carer","counciltax"],ok:1,t:"Carers' Council Tax Discount",o:"Lewisham Council",d:"If you are recognised as a carer, you may be eligible for a reduction on your Council Tax bill. The rules can be complex (e.g. you may be 'disregarded' for Council Tax purposes if you care for someone for at least 35 hours a week and meet other criteria). Contact Lewisham Council's Council Tax team to check your eligibility and apply.",u:"https://lewisham.gov.uk/myservices/counciltax/council-tax-reductions-and-exemptions/",l:"Lewisham Council, Council Tax Reductions"},
-{k:["children","apps"],ok:1,t:"EasyPeasy (Parenting App)",o:"Lewisham Council (funded)",d:"Free app for parents of children aged 0-5 in Lewisham. Provides age-appropriate activities, advice on sleep, nutrition, language, and wellbeing, and a space to connect with other parents. Funded by the Council to support early childhood development. Search for 'EasyPeasy' in your app store and use your Lewisham postcode to unlock free access.",u:"https://www.easypeasyapp.com/",l:"EasyPeasy, Parenting App"},
-{k:["crisis","housing","adult","apps"],ok:1,t:"Love Clean Streets (Report Local Issues)",o:"Lewisham Council",d:"Use this app to report street problems directly to the Council (e.g. graffiti, fly-tipping, blocked drains, potholes, broken streetlights). Take a geotagged photo and submit it; it goes straight to the relevant team. Helps improve your local area. Search for 'Love Clean Streets' in your app store.",u:"https://lewisham.gov.uk/myservices/streets-and-roads/report-a-street-problem",l:"Lewisham Council, Street Reporting"},
-{k:["adult","children","senior","carer","disability","apps"],ok:1,t:"NHS App (Health & Prescriptions)",o:"NHS",d:"The official NHS app. Book and manage GP or hospital appointments, order repeat prescriptions, view your medical record, and check your vaccination status. If you are a carer, you can use 'Linked Profiles' to manage appointments for someone you care for (with their consent). Essential for anyone using NHS services. Download from your app store and verify your identity with a photo ID.",u:"https://www.nhs.uk/nhs-app/",l:"NHS, NHS App"},
-{k:["food","crisis","apps"],ok:1,t:"Too Good To Go (Discounted Food)",o:"Too Good To Go",d:"App that lets you buy 'surprise bags' of surplus food from local bakeries, restaurants, and supermarkets at a heavily reduced price (usually £3-£5). Helps reduce food waste and saves money. Availability varies by location and time of day. Download the app and set your location to Lewisham.",u:"https://www.toogoodtogo.com/en-gb",l:"Too Good To Go"},
-{k:["adult","counciltax","housing","apps"],ok:1,t:"My Lewisham Account (Online Services)",o:"Lewisham Council",d:"While not a standalone app, the Council's mobile-friendly website lets you manage your Council Tax, check your housing benefit, report issues, and apply for services. Bookmark it on your phone's home screen for quick access. You need to create an account with your Council Tax reference number.",u:"https://lewisham.gov.uk/myservices",l:"Lewisham Council, My Account"},
-{k:["adult","crisis"],ok:1,t:"Blackwall & Silvertown Tunnel Discount (50%)",o:"Transport for London (TfL)",d:"Lewisham residents can get a 50% discount on Blackwall and Silvertown tunnel charges. The discount is available until at least April 2028. You must register in advance with TfL. Eligibility includes receiving certain benefits (e.g. Income-related ESA, Income-based JSA). Register at tfl.gov.uk/east-london-discount. You need a vehicle registered for Auto Pay on TfL.",u:"https://tfl.gov.uk/east-london-discount",l:"TfL, East London Discount"},
-{k:["adult","children","senior"],ok:1,t:"Lewisham Shopping Centre – PLUS+ Rewards",o:"Lewisham Shopping Centre",d:"Free loyalty programme. Members get exclusive offers, first looks at new openings, competitions, and a birthday reward email. Sign up for free on the Lewisham Shopping website. This is a commercial scheme, not a Council benefit, but it is free and open to all.",u:"https://www.lewishamshopping.co.uk/en/plus",l:"Lewisham Shopping, PLUS+"},
-{k:["adult","senior","children"],ok:1,t:"Unlimited Be Active Membership (approx. £5/week)",o:"Lewisham Council",d:"Once you are a casual Be Active member, you can upgrade to Unlimited membership for around £5 per week. This gives unlimited use of the pool, gym, and exercise classes at all Lewisham leisure centres. At Downham Health & Leisure Centre, it is £23.50 per month via Direct Debit. You must renew every 3 months and give one month's notice to cancel. Not available to carers.",u:"https://lewisham.gov.uk/inmyarea/sport/be-active-discounts/types-of-be-active-membership",l:"Lewisham Council, Be Active"}
-];
-function render(){
- var sel=[].slice.call(document.querySelectorAll("input[type=checkbox]:checked")).map(function(e){return e.value});
- var list=A.filter(function(a){return a.k.some(function(x){return sel.indexOf(x)>-1})});
- document.getElementById("cnt").textContent=sel.length?list.length+" "+t('count'):t('prompt');
- document.getElementById("out").innerHTML=list.map(function(a){
-  var title = (currentLang === 'fr' && a.t_fr) ? a.t_fr : (currentLang === 'es' && a.t_es) ? a.t_es : a.t;
-  var desc = (currentLang === 'fr' && a.d_fr) ? a.d_fr : (currentLang === 'es' && a.d_es) ? a.d_es : a.d;
-  return '<div class="card"><span class="badge '+(a.ok?"ok":"chk")+'">'+(a.ok?t('verified'):t('toCheck'))+'</span><h3>'+title+'</h3><div class="org">'+a.o+'</div><p>'+desc+'</p><p><a href="'+a.u+'" target="_blank" rel="noopener">'+t('source')+': '+a.l+'</a></p></div>'
- }).join("");
-}
-document.addEventListener("change",render);document.addEventListener("input",render);render();
+document.querySelectorAll(".lang-btn").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"))})});
+opts.addEventListener("change",render);
+document.getElementById("btn-clear").addEventListener("click",function(){document.querySelectorAll("#opts input").forEach(function(i){i.checked=false});render();opts.querySelector("input").focus()});
+document.getElementById("btn-print").addEventListener("click",function(){window.print()});
+
+var start="en";
+try{start=localStorage.getItem("lsf-lang")||""}catch(e){start=""}
+if(!start){var nl=(navigator.language||"en").slice(0,2).toLowerCase();start=I18N[nl]?nl:"en"}
+setLang(start);
 </script>
 </body>
 </html>
