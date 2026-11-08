@@ -35,12 +35,31 @@ a{color:var(--ac);text-decoration:none;font-weight:500}
 a:hover{text-decoration:underline}
 .cnt{font-weight:700;font-size:1.1rem;margin:32px 0 16px;padding-bottom:12px;border-bottom:1px solid var(--bd)}
 footer{font-size:0.8rem;color:var(--mu);border-top:1px solid var(--bd);margin-top:48px;padding-top:24px;line-height:1.6}
+.urg{border:2px solid #dc2626;background:var(--card);border-radius:16px;padding:20px;margin:0 0 28px;box-shadow:0 4px 12px rgba(220,38,38,0.1)}
+.urg h2{font-size:1.1rem;margin:0 0 12px;color:#dc2626;display:flex;align-items:center;gap:8px}
+.urg ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.urg li{display:flex;gap:12px;align-items:baseline}
+.urg a{font-weight:800;font-size:1rem;min-width:110px;text-decoration:none;color:#dc2626}
+.urg span{color:var(--tx);font-size:0.9rem}
 </style>
 </head>
 <body>
 <main>
 <h1>Lewisham Support Finder</h1>
 <p class="sub">Select your situation to find help from Lewisham Council. Nothing is saved.</p>
+<section class="urg" aria-label="Emergency numbers">
+<h2>🚨 Essential numbers</h2>
+<ul>
+<li><a href="tel:999">999</a><span>Emergency (police, fire, ambulance)</span></li>
+<li><a href="tel:111">111</a><span>NHS medical advice (press 2 for mental health)</span></li>
+<li><a href="tel:101">101</a><span>Police non-emergency</span></li>
+<li><a href="tel:02083146000">020 8314 6000</a><span>Lewisham Council 24/7 switchboard</span></li>
+<li><a href="tel:08081780939">0808 178 0939</a><span>Homelessness emergency (out of hours)</span></li>
+<li><a href="tel:08002315453">0800 231 5453</a><span>Citizens Advice Lewisham (benefits, debt, housing)</span></li>
+<li><a href="tel:03300583464">0330 058 3464</a><span>Community Connections Lewisham (food, local support)</span></li>
+<li><a href="tel:08000282028">0800 028 2028</a><span>Emergency housing repairs (Council tenants)</span></li>
+</ul>
+</section>
 
 <fieldset><legend>Your situation</legend>
 <div class="grid-opts">
