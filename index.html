@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lewisham Support Finder</title>
+<meta name="theme-color" content="#1e3a8a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8fafc;--card:#ffffff;--tx:#0f172a;--mu:#64748b;--ac:#1e3a8a;--ac-light:#eff6ff;--bd:#e2e8f0;--ok:#15803d;--okb:#dcfce7;--wa:#b45309;--wab:#fef3c7;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f172a;--card:#1e293b;--tx:#f8fafc;--mu:#94a3b8;--ac:#3b82f6;--ac-light:#1e3a8a;--bd:#334155;--ok:#4ade80;--okb:#064e3b;--wa:#fcd34d;--wab:#451a03}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 'Inter',system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:640px;margin:0 auto;padding:32px 16px 64px}
+h1{font-family:'Inter',sans-serif;font-weight:700;font-size:2rem;line-height:1.2;margin:0 0 8px;letter-spacing:-0.03em;color:var(--ac)}
+.sub{color:var(--mu);margin:0 0 28px;font-size:1.05rem}
+fieldset{border:none;padding:0;margin:0 0 24px}
+legend{font-weight:700;font-size:1.1rem;padding:0;margin-bottom:16px}
+.grid-opts{display:flex;flex-wrap:wrap;gap:10px}
+label.opt{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:var(--card);border:1.5px solid var(--bd);border-radius:99px;cursor:pointer;font-size:0.95rem;font-weight:500;transition:all 0.2s ease;box-shadow:0 1px 2px rgba(0,0,0,0.04);user-select:none;color:var(--tx)}
+label.opt:hover{border-color:var(--ac);color:var(--ac);background:var(--ac-light)}
+label.opt input{display:none}
+label.opt:has(input:checked){background:var(--ac);border-color:var(--ac);color:#fff;box-shadow:0 4px 12px rgba(30,58,138,0.25)}
+label.opt:has(input:checked)::before{content:"✓";font-weight:700;margin-right:2px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;margin:0 0 16px;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:transform 0.2s}
+.card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+.card h3{margin:0 0 6px;font-size:1.15rem;line-height:1.3;font-weight:600}
+.org{font-size:0.85rem;font-weight:600;color:var(--mu);margin:0 0 12px;text-transform:uppercase;letter-spacing:0.05em}
+.card p{margin:8px 0;font-size:0.95rem}
+.badge{display:inline-block;font-size:0.75rem;font-weight:700;padding:4px 10px;border-radius:8px;margin-bottom:12px;letter-spacing:0.02em}
+.ok{background:var(--okb);color:var(--ok)}.chk{background:var(--wab);color:var(--wa)}
+a{color:var(--ac);text-decoration:none;font-weight:500}
+a:hover{text-decoration:underline}
+.cnt{font-weight:700;font-size:1.1rem;margin:32px 0 16px;padding-bottom:12px;border-bottom:1px solid var(--bd)}
+footer{font-size:0.8rem;color:var(--mu);border-top:1px solid var(--bd);margin-top:48px;padding-top:24px;line-height:1.6}
+</style>
+</head>
+<body>
+<main>
+<h1>Lewisham Support Finder</h1>
+<p class="sub">Select your situation to find help from Lewisham Council. Nothing is saved.</p>
+
+<fieldset><legend>Your situation</legend>
+<div class="grid-opts">
+<label class="opt"><input type="checkbox" value="crisis"> Sudden crisis</label>
+<label class="opt"><input type="checkbox" value="housing"> Rent or housing costs</label>
+<label class="opt"><input type="checkbox" value="children"> Children at school</label>
+<label class="opt"><input type="checkbox" value="counciltax"> Council Tax help</label>
+<label class="opt"><input type="checkbox" value="careleaver"> Care leaver (under 25)</label>
+<label class="opt"><input type="checkbox" value="food"> Food or essentials</label>
+</div>
+</fieldset>
+
+<div class="cnt" id="cnt"></div>
+<div id="out"></div>
+
+<footer>
+<p><strong>Unofficial test version.</strong> Based on public Lewisham Council documents (CRF policy 2026, FSM guidance, Care Leavers offer). Always check with the Council before applying.</p>
+</footer>
+</main>
+<script>
+var A=[
+{k:["crisis"],ok:1,t:"Crisis and Resilience Fund – Crisis Payments",o:"Lewisham Council",d:"Emergency cash for Lewisham residents facing an immediate, unexpected crisis (e.g. fire, flood, essential appliance breakdown, health emergency, fleeing domestic abuse). Not for ongoing low income. Maximum amounts: Food £40/adult or £20/child per week; Hygiene £30/household per week; Energy £120/household (£70 single); Water £60; Internet £35; Clothing up to £120; Transport up to £200; One essential furniture/appliance item.",u:"https://lewisham.gov.uk/myservices/benefits/crisis-and-resilience-fund",l:"Lewisham Council, CRF"},
+{k:["housing"],ok:1,t:"Crisis and Resilience Fund – Housing Payments",o:"Lewisham Council",d:"Help with housing costs if you receive Housing Benefit or the housing element of Universal Credit. Can cover rent shortfalls, deposit, advance rent, or moving costs. Discretionary – each application is assessed individually.",u:"https://lewisham.gov.uk/myservices/benefits/crisis-and-resilience-fund",l:"Lewisham Council, CRF"},
+{k:["children"],ok:1,t:"Free School Meals",o:"Lewisham Council",d:"If you receive certain benefits (Universal Credit, income-related ESA, Pension Credit guarantee), your child may get free school meals. Two categories from Sept 2026: Targeted (household earnings ≤ £7,400, also attracts Pupil Premium funding for the school) and Expanded (any Universal Credit household, meals only). All primary children Reception–Year 6 also get universal free meals until summer 2028.",u:"https://lewisham.gov.uk/myservices/education/student-pupil-support/free-school-meals-and-extra-support-for-your-child",l:"Lewisham Council, FSM"},
+{k:["counciltax"],ok:1,t:"Council Tax Reduction",o:"Lewisham Council",d:"If you have a low income, you can apply for a reduction on your Council Tax bill. Universal Credit does not cover Council Tax, so you must apply separately to Lewisham Council.",u:"https://lewisham.gov.uk/myservices/benefits/housing-benefit/apply-for-housing-benefit",l:"Lewisham Council, Council Tax Reduction"},
+{k:["careleaver"],ok:1,t:"Care Leavers Support",o:"Lewisham Council",d:"If you have been in care and are under 25, you may be entitled to: Council Tax exemption until 25; a £2,000 setting-up grant for your first home; help with driving lessons; a £1,000 apprenticeship bursary (16–24). Contact the Care Leavers team at Lewisham Council for eligibility and how to apply.",u:"https://lewisham.gov.uk/myservices/social-care-and-support/children/care-leavers",l:"Lewisham Council, Care Leavers"},
+{k:["food"],ok:1,t:"Food and Essentials Support",o:"Lewisham Council and partners",d:"Lewisham Council does not run food banks directly but funds and signposts to a network of support. Call Community Connections Lewisham (0330 058 3464) to find the nearest food bank, community meal, or social supermarket. Advice Lewisham (0800 231 5453) can help with benefits, debt, and housing advice.",u:"https://lewisham.gov.uk/myservices/benefits/crisis-and-resilience-fund",l:"Lewisham Council, food support"}
+];
+function render(){
+ var sel=[].slice.call(document.querySelectorAll("input[type=checkbox]:checked")).map(function(e){return e.value});
+ var list=A.filter(function(a){return a.k.some(function(x){return sel.indexOf(x)>-1})});
+ document.getElementById("cnt").textContent=sel.length?list.length+" results for your situation":"Select at least one option to see support";
+ document.getElementById("out").innerHTML=list.map(function(a){
+  return '<div class="card"><span class="badge '+(a.ok?"ok":"chk")+'">'+(a.ok?"Verified source":"To check")+'</span><h3>'+a.t+'</h3><div class="org">'+a.o+'</div><p>'+a.d+'</p><p><a href="'+a.u+'" target="_blank" rel="noopener">Source: '+a.l+'</a></p></div>'
+ }).join("");
+}
+document.addEventListener("change",render);document.addEventListener("input",render);render();
+</script>
+</body>
+</html>
